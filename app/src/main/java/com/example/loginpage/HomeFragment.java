@@ -1,6 +1,9 @@
 package com.example.loginpage;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -12,9 +15,13 @@ import androidx.fragment.app.Fragment;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class HomeFragment extends Fragment {
     private final List<Product> visibleProducts = new ArrayList<>();
+    private final List<Product> allProducts = new ArrayList<>();
+    private final ExecutorService databaseExecutor = Executors.newSingleThreadExecutor();
     private ProductAdapter adapter;
 
     public HomeFragment() { super(R.layout.fragment_home); }
@@ -31,7 +38,16 @@ public class HomeFragment extends Fragment {
         grid.setAdapter(adapter);
         grid.setOnItemClickListener((parent, item, position, id) ->
                 activity.openProductDetail(visibleProducts.get(position)));
-        filter(activity.getSearchQuery());
+        Context appContext = requireContext().getApplicationContext();
+        databaseExecutor.execute(() -> {
+            List<Product> products = new ProductRepository(appContext).getProducts();
+            new Handler(Looper.getMainLooper()).post(() -> {
+                if (adapter == null || getView() != view) return;
+                allProducts.clear();
+                allProducts.addAll(products);
+                filter(activity.getSearchQuery());
+            });
+        });
     }
 
     // Lọc theo tên hoặc danh mục, rồi báo Adapter vẽ lại.
@@ -39,7 +55,7 @@ public class HomeFragment extends Fragment {
         if (adapter == null) return;
         String keyword = query.trim().toLowerCase(Locale.ROOT);
         visibleProducts.clear();
-        for (Product product : ProductCatalog.getProducts()) {
+        for (Product product : allProducts) {
             if (product.getName().toLowerCase(Locale.ROOT).contains(keyword)
                     || product.getCategory().toLowerCase(Locale.ROOT).contains(keyword)) {
                 visibleProducts.add(product);
@@ -51,5 +67,10 @@ public class HomeFragment extends Fragment {
     @Override public void onDestroyView() {
         super.onDestroyView();
         adapter = null;
+    }
+
+    @Override public void onDestroy() {
+        databaseExecutor.shutdown();
+        super.onDestroy();
     }
 }
