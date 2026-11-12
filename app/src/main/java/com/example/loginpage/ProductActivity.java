@@ -1,6 +1,7 @@
 package com.example.loginpage;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -35,8 +36,8 @@ public class ProductActivity extends AppCompatActivity {
             return insets;
         });
 
-        String userExtra = getIntent().getStringExtra("username_key");
-        if (userExtra != null && !userExtra.isEmpty()) username = userExtra;
+        SharedPreferences userPrefs = getSharedPreferences("user_data", MODE_PRIVATE);
+        username = userPrefs.getString("username", "Khách");
         edtSearch = findViewById(R.id.edtSearch);
         tvCartBadge = findViewById(R.id.tvCartBadge);
         findViewById(R.id.btnOpenCart).setOnClickListener(v ->
@@ -91,17 +92,17 @@ public class ProductActivity extends AppCompatActivity {
     public String getUsername() { return username; }
     public String getSearchQuery() { return edtSearch.getText().toString(); }
 
-    // Gửi thông tin sản phẩm sang màn chi tiết qua Intent.
+    // Lưu sản phẩm đang chọn để màn chi tiết đọc lại từ SharedPreferences.
     public void openProductDetail(Product product) {
-        Intent detail = new Intent(this, ProductDetailActivity.class);
-        detail.putExtra("product_name", product.getName());
-        detail.putExtra("product_price", product.getPrice());
-        detail.putExtra("product_desc", product.getDescription());
-        detail.putExtra("product_image", product.getImageResId());
-        detail.putExtra("product_category", product.getCategory());
-        detail.putExtra("product_image_url", product.getImageUrl());
-        detail.putExtra("username_key", username);
-        startActivity(detail);
+        getSharedPreferences("selected_product", MODE_PRIVATE).edit()
+                .putString("name", product.getName())
+                .putString("price", product.getPrice())
+                .putString("description", product.getDescription())
+                .putInt("image", product.getImageResId())
+                .putString("category", product.getCategory())
+                .putString("image_url", product.getImageUrl())
+                .apply();
+        startActivity(new Intent(this, ProductDetailActivity.class));
     }
 
     @Override protected void onSaveInstanceState(Bundle outState) {

@@ -1,6 +1,6 @@
 package com.example.loginpage;
 
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,7 +12,7 @@ import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class ProductDetailActivity extends AppCompatActivity {
-    // Nhận sản phẩm từ Intent, hiện chi tiết và xử lý thêm vào giỏ.
+    // Đọc sản phẩm đã chọn từ SharedPreferences rồi xử lý thêm vào giỏ.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,20 +24,25 @@ public class ProductDetailActivity extends AppCompatActivity {
             return insets;
         });
 
-        Intent intent = getIntent();
+        SharedPreferences productPrefs = getSharedPreferences("selected_product", MODE_PRIVATE);
+        if (!productPrefs.contains("name")) {
+            finish();
+            return;
+        }
         Product product = new Product(
-                intent.getStringExtra("product_name"),
-                intent.getStringExtra("product_price"),
-                intent.getStringExtra("product_desc"),
-                intent.getIntExtra("product_image", R.mipmap.ic_launcher),
-                intent.getStringExtra("product_category"),
-                intent.getStringExtra("product_image_url"));
+                productPrefs.getString("name", ""),
+                productPrefs.getString("price", ""),
+                productPrefs.getString("description", ""),
+                productPrefs.getInt("image", R.mipmap.ic_launcher),
+                productPrefs.getString("category", ""),
+                productPrefs.getString("image_url", null));
 
         ((TextView) findViewById(R.id.tvDetailName)).setText(product.getName());
         ((TextView) findViewById(R.id.tvDetailPrice)).setText(product.getPrice());
         ((TextView) findViewById(R.id.tvDetailDesc)).setText(product.getDescription());
         ((TextView) findViewById(R.id.tvDetailUser))
-                .setText("Tài khoản: " + intent.getStringExtra("username_key"));
+                .setText("Tài khoản: " + getSharedPreferences("user_data", MODE_PRIVATE)
+                        .getString("username", "Khách"));
         ProductImageLoader.load(findViewById(R.id.imgDetailProduct), product);
 
         findViewById(R.id.btnOrder).setOnClickListener(view -> {

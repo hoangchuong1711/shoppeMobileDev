@@ -47,9 +47,7 @@ public class MainActivity extends AppCompatActivity {
         if (username.equals(prefs.getString("username", ""))
                 && password.equals(prefs.getString("password", ""))) {
             Toast.makeText(this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, ProductActivity.class);
-            intent.putExtra("username_key", username);
-            startActivity(intent);
+            startActivity(new Intent(this, ProductActivity.class));
         } else {
             Toast.makeText(this, "Sai tên đăng nhập hoặc mật khẩu", Toast.LENGTH_SHORT).show();
         }
