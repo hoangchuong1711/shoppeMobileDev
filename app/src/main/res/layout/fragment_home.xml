@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Giao diện Fragment Home: Gợi ý hôm nay + Grid 2 cột sản phẩm -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5">
+
+    <!-- Header Gợi ý hôm nay -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="#FFFFFF"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="10dp"
+        android:layout_marginBottom="4dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="GỢI Ý HÔM NAY"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#EE4D2D" />
+
+        <TextView
+            android:id="@+id/tvWelcomeUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Xin chào, Khách!"
+            android:textSize="12sp"
+            android:textColor="#757575" />
+    </LinearLayout>
+
+    <!-- GridView 2 cột sản phẩm -->
+    <GridView
+        android:id="@+id/gvProducts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="2"
+        android:horizontalSpacing="6dp"
+        android:verticalSpacing="6dp"
+        android:padding="8dp"
+        android:clipToPadding="false"
+        android:scrollbars="none" />
+
+</LinearLayout>

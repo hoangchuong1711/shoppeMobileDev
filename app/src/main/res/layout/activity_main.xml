@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#FFF2EE"
+    android:padding="24dp"
+    tools:context=".MainActivity">
+
+    <!-- Khung Card trắng chính giữa màn hình tông Cam - Trắng Shopee -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="#FFFFFF">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="24dp">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="@drawable/bg_icon_box"
+                android:padding="14dp"
+                android:src="@drawable/ic_cart_white"
+                app:tint="#EE4D2D"
+                android:layout_marginBottom="12dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ĐĂNG NHẬP"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#EE4D2D" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chào mừng bạn quay trở lại mua sắm"
+                android:textSize="14sp"
+                android:textColor="#757575"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="24dp" />
+
+            <EditText
+                android:id="@+id/edtUsername"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/bg_input"
+                android:hint="Tên đăng nhập"
+                android:paddingHorizontal="16dp"
+                android:inputType="text"
+                android:textSize="15sp"
+                android:layout_marginBottom="14dp" />
+
+            <EditText
+                android:id="@+id/edtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/bg_input"
+                android:hint="Mật khẩu"
+                android:paddingHorizontal="16dp"
+                android:inputType="textPassword"
+                android:textSize="15sp"
+                android:layout_marginBottom="22dp" />
+
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Đăng nhập"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#EE4D2D" />
+
+            <TextView
+                android:id="@+id/tvGoRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chưa có tài khoản? Đăng ký ngay"
+                android:textColor="#EE4D2D"
+                android:textStyle="bold"
+                android:padding="12dp"
+                android:layout_marginTop="8dp" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
