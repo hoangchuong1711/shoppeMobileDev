@@ -1,4 +1,8 @@
-package com.example.loginpage;
+package com.example.loginpage.ui.catalog;
+
+import com.example.loginpage.R;
+import com.example.loginpage.model.Product;
+import com.example.loginpage.ui.cart.CartManager;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -45,11 +49,14 @@ public class ProductDetailActivity extends AppCompatActivity {
                         .getString("username", "Khách"));
         ProductImageLoader.load(findViewById(R.id.imgDetailProduct), product);
 
+        //button thêm giỏ hàng
         findViewById(R.id.btnOrder).setOnClickListener(view -> {
             CartManager.addToCart(product);
             Toast.makeText(this, "Đã thêm " + product.getName() + " vào giỏ hàng!",
                     Toast.LENGTH_SHORT).show();
         });
+
+        //button back
         findViewById(R.id.btnBack).setOnClickListener(view -> finish());
     }
 }

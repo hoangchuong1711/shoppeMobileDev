@@ -1,4 +1,8 @@
-package com.example.loginpage;
+package com.example.loginpage.ui.catalog;
+
+import com.example.loginpage.R;
+import com.example.loginpage.data.ProductRepository;
+import com.example.loginpage.model.Product;
 
 import android.content.Context;
 import android.graphics.Color;

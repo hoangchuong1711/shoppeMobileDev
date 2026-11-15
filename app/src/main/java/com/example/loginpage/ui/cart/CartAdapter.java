@@ -1,4 +1,8 @@
-package com.example.loginpage;
+package com.example.loginpage.ui.cart;
+
+import com.example.loginpage.R;
+import com.example.loginpage.model.Product;
+import com.example.loginpage.ui.catalog.ProductImageLoader;
 
 import android.content.Context;
 import android.view.LayoutInflater;

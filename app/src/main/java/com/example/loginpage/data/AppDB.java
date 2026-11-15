@@ -1,4 +1,5 @@
-package com.example.loginpage;
+package com.example.loginpage.data;
+
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -26,7 +27,7 @@ public final class AppDB extends SQLiteOpenHelper {
                 + "image_url TEXT NOT NULL)");
         ProductCatalog.seedProducts(db);
     }
-
+ 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Khi thêm bảng hoặc đổi schema, tăng DATABASE_VERSION và migration tại đây.

@@ -1,4 +1,6 @@
-package com.example.loginpage;
+package com.example.loginpage.ui.cart;
+
+import com.example.loginpage.model.Product;
 
 import java.util.ArrayList;
 

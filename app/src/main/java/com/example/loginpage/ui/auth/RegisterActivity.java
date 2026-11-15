@@ -1,4 +1,6 @@
-package com.example.loginpage;
+package com.example.loginpage.ui.auth;
+
+import com.example.loginpage.R;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;

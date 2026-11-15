@@ -1,4 +1,4 @@
-package com.example.loginpage;
+package com.example.loginpage.model;
 
 public class Product {
     private final String name;

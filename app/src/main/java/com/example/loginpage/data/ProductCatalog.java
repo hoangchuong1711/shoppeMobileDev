@@ -1,4 +1,5 @@
-package com.example.loginpage;
+package com.example.loginpage.data;
+
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;

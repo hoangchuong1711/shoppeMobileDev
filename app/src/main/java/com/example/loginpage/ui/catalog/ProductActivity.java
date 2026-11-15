@@ -1,4 +1,11 @@
-package com.example.loginpage;
+package com.example.loginpage.ui.catalog;
+
+import com.example.loginpage.R;
+import com.example.loginpage.model.Product;
+import com.example.loginpage.ui.cart.CartActivity;
+import com.example.loginpage.ui.cart.CartManager;
+import com.example.loginpage.ui.profile.ProfileFragment;
+import com.example.loginpage.ui.notification.NotificationFragment;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -70,6 +77,7 @@ public class ProductActivity extends AppCompatActivity {
 
     // Tạo tab lần đầu; các lần sau chỉ ẩn/hiện Fragment để giữ trạng thái.
     private void showTab(int itemId) {
+        // tìm fragment khi click vào
         Fragment target = getSupportFragmentManager().findFragmentByTag("tab_" + itemId);
         if (target == null) {
             if (itemId == R.id.nav_home) target = new HomeFragment();
@@ -81,6 +89,7 @@ public class ProductActivity extends AppCompatActivity {
 
         androidx.fragment.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            //nếu ko dùng thì ẩn trang fragment
             if (fragment.isAdded() && fragment != target) transaction.hide(fragment);
         }
 

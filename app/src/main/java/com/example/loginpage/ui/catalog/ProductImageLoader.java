@@ -1,4 +1,6 @@
-package com.example.loginpage;
+package com.example.loginpage.ui.catalog;
+
+import com.example.loginpage.model.Product;
 
 import android.widget.ImageView;
 

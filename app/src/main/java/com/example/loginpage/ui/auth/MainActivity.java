@@ -1,4 +1,7 @@
-package com.example.loginpage;
+package com.example.loginpage.ui.auth;
+
+import com.example.loginpage.R;
+import com.example.loginpage.ui.catalog.ProductActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;

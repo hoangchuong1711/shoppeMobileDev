@@ -1,4 +1,7 @@
-package com.example.loginpage;
+package com.example.loginpage.ui.profile;
+
+import com.example.loginpage.R;
+import com.example.loginpage.ui.catalog.ProductActivity;
 
 import android.os.Bundle;
 import android.view.View;
