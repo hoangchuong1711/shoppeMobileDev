@@ -55,8 +55,7 @@ public class ProductActivity extends AppCompatActivity {
             showTab(item.getItemId());
             return true;
         });
-        int selectedTab = savedInstanceState == null
-                ? R.id.nav_home : savedInstanceState.getInt(SELECTED_TAB, R.id.nav_home);
+        int selectedTab = savedInstanceState == null ? R.id.nav_home : savedInstanceState.getInt(SELECTED_TAB, R.id.nav_home);
         bottomNavigation.setSelectedItemId(selectedTab);
 
         edtSearch.addTextChangedListener(new TextWatcher() {

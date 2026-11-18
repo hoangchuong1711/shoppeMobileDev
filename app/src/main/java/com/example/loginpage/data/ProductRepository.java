@@ -1,10 +1,8 @@
 package com.example.loginpage.data;
 
 import com.example.loginpage.model.Product;
-
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -12,35 +10,44 @@ import java.util.List;
 import java.util.Locale;
 
 public final class ProductRepository {
-    private final Context appContext;
-
-    public ProductRepository(Context context) {
-        appContext = context.getApplicationContext();
+    public interface ProductsCallback {
+        void onSuccess(List<Product> products);
+        void onError(Exception error);
     }
 
-    // Gọi từ luồng nền vì mở database và đọc dữ liệu có thể mất thời gian.
-    public List<Product> getProducts() {
-        List<Product> products = new ArrayList<>();
-        NumberFormat priceFormat = NumberFormat.getIntegerInstance(Locale.forLanguageTag("vi-VN"));
-        AppDB helper = new AppDB(appContext);
-        try {
-            SQLiteDatabase db = helper.getReadableDatabase();
-            try (Cursor cursor = db.query(AppDB.TABLE_PRODUCTS,
-                    new String[]{"name", "price", "description", "image_res_id", "category", "image_url"},
-                    null, null, null, null, "id ASC")) {
-                while (cursor.moveToNext()) {
-                    products.add(new Product(
-                            cursor.getString(0),
-                            priceFormat.format(cursor.getLong(1)) + " đ",
-                            cursor.getString(2),
-                            cursor.getInt(3),
-                            cursor.getString(4),
-                            cursor.getString(5)));
-                }
-            }
-        } finally {
-            helper.close();
-        }
-        return products;
+    public void getProducts(ProductsCallback callback) {
+        FirebaseFirestore.getInstance()
+                .collection("products")
+                .get()
+                .addOnSuccessListener(snapshot -> {
+                    List<Product> products = new ArrayList<>();
+                    NumberFormat priceFormat =
+                            NumberFormat.getIntegerInstance(Locale.forLanguageTag("vi-VN"));
+
+                    for (DocumentSnapshot document : snapshot.getDocuments()) {
+                        String name = document.getString("name");
+                        Long price = document.getLong("price");
+                        String description = document.getString("description");
+                        String category = document.getString("category");
+                        String imageUrl = document.getString("image_url");
+
+                        if (name == null || price == null || description == null
+                                || category == null || imageUrl == null) {
+                            callback.onError(new IllegalStateException(
+                                    "Sản phẩm " + document.getId() + " thiếu field hoặc sai kiểu dữ liệu"));
+                            return;
+                        }
+
+                        products.add(new Product(
+                                name,
+                                priceFormat.format(price) + " đ",
+                                description,
+                                android.R.drawable.ic_menu_gallery,
+                                category,
+                                imageUrl));
+                    }
+                    callback.onSuccess(products);
+                })
+                .addOnFailureListener(callback::onError);
     }
 }

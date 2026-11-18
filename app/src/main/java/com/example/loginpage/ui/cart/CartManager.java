@@ -13,7 +13,6 @@ public final class CartManager {
         return PRODUCTS;
     }
 
-    // Tạo bản sao để trạng thái tích chọn trong giỏ không ảnh hưởng sản phẩm gốc.
     public static void addToCart(Product product) {
         PRODUCTS.add(new Product(product.getName(), product.getPrice(),
                 product.getDescription(), product.getImageResId(),

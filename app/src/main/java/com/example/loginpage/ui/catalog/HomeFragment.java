@@ -4,13 +4,11 @@ import com.example.loginpage.R;
 import com.example.loginpage.data.ProductRepository;
 import com.example.loginpage.model.Product;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,13 +17,10 @@ import androidx.fragment.app.Fragment;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class HomeFragment extends Fragment {
     private final List<Product> visibleProducts = new ArrayList<>();
     private final List<Product> allProducts = new ArrayList<>();
-    private final ExecutorService databaseExecutor = Executors.newSingleThreadExecutor();
     private ProductAdapter adapter;
 
     public HomeFragment() { super(R.layout.fragment_home); }
@@ -40,17 +35,24 @@ public class HomeFragment extends Fragment {
         GridView grid = view.findViewById(R.id.gvProducts);
         adapter = new ProductAdapter(requireContext(), visibleProducts);
         grid.setAdapter(adapter);
+
         grid.setOnItemClickListener((parent, item, position, id) ->
                 activity.openProductDetail(visibleProducts.get(position)));
-        Context appContext = requireContext().getApplicationContext();
-        databaseExecutor.execute(() -> {
-            List<Product> products = new ProductRepository(appContext).getProducts();
-            new Handler(Looper.getMainLooper()).post(() -> {
+
+        new ProductRepository().getProducts(new ProductRepository.ProductsCallback() {
+            @Override public void onSuccess(List<Product> products) {
                 if (adapter == null || getView() != view) return;
                 allProducts.clear();
                 allProducts.addAll(products);
                 filter(activity.getSearchQuery());
-            });
+            }
+
+            @Override public void onError(Exception error) {
+                if (adapter == null || getView() != view) return;
+                Toast.makeText(requireContext(),
+                        "Không tải được sản phẩm: " + error.getMessage(),
+                        Toast.LENGTH_LONG).show();
+            }
         });
     }
 
@@ -71,10 +73,5 @@ public class HomeFragment extends Fragment {
     @Override public void onDestroyView() {
         super.onDestroyView();
         adapter = null;
-    }
-
-    @Override public void onDestroy() {
-        databaseExecutor.shutdown();
-        super.onDestroy();
     }
 }

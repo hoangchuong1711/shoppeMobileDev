@@ -27,8 +27,15 @@ public class CartAdapter extends ArrayAdapter<Product> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View row = convertView != null ? convertView
-                : LayoutInflater.from(getContext()).inflate(R.layout.item_cart, parent, false);
+        View row;
+        if (convertView != null) {
+            // Có dòng cũ rồi → dùng lại
+            row = convertView;
+        } else {
+            // Chưa có dòng để dùng lại → tạo dòng mới từ XML
+            row = LayoutInflater.from(getContext())
+                    .inflate(R.layout.item_cart, parent, false);
+        }
         Product product = Objects.requireNonNull(getItem(position));
 
         CheckBox checkBox = row.findViewById(R.id.cbCartItem);
