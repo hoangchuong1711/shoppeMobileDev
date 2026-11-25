@@ -26,7 +26,7 @@ public class OrderSuccessActivity extends AppCompatActivity {
         String total = getIntent().getStringExtra("total");
         ((TextView) findViewById(R.id.successInfo)).setText("Mã đơn #" + id + "\nTổng cộng " + total + " ₫");
         findViewById(R.id.viewOrder).setOnClickListener(v -> {
-            startActivity(new Intent(this, OrdersActivity.class).putExtra("order_id", id));
+            startActivity(new Intent(this, OrdersActivity.class));
             finish();
         });
         findViewById(R.id.continueShopping).setOnClickListener(v -> {

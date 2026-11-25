@@ -20,6 +20,7 @@ public class ProfileFragment extends Fragment {
     @Override public void onViewCreated(@NonNull View view, @Nullable Bundle state) {
         super.onViewCreated(view, state);
         ProductActivity activity = (ProductActivity) requireActivity();
+
         view.findViewById(R.id.editProfile).setOnClickListener(v ->
                 startActivity(new Intent(activity, EditProfileActivity.class)));
         view.findViewById(R.id.allOrders).setOnClickListener(v ->
@@ -42,6 +43,8 @@ public class ProfileFragment extends Fragment {
     private void refresh() {
         View view = getView();
         if (view == null) return;
+
+        //tài khoản
         String username = ((ProductActivity) requireActivity()).getUsername();
         String name = ProfileStore.get(requireContext(), "name");
         ((TextView) view.findViewById(R.id.tvProfileName))
@@ -49,12 +52,16 @@ public class ProfileFragment extends Fragment {
         ((TextView) view.findViewById(R.id.profileUsername)).setText("@" + username);
         ((TextView) view.findViewById(R.id.profileAvatar)).setText(
                 (name.isEmpty() ? username : name).substring(0, 1).toUpperCase(Locale.getDefault()));
+
+        //thông tin nhận hàng
         String phone = ProfileStore.get(requireContext(), "phone");
         String address = ProfileStore.get(requireContext(), "address");
         ((TextView) view.findViewById(R.id.profileInfo)).setText(
                 name.isEmpty() || phone.isEmpty() || address.isEmpty()
                         ? "Thêm thông tin nhận hàng để đặt đơn nhanh hơn."
                         : name + "  ·  " + phone + "\n" + address);
+
+        //đơn hàng
         JSONArray orders = ProfileStore.orders(requireContext());
         JSONObject latest = orders.optJSONObject(0);
         ((TextView) view.findViewById(R.id.recentOrder)).setText(latest == null

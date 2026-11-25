@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.activity.OnBackPressedCallback;
 import androidx.core.graphics.Insets;
@@ -31,12 +30,24 @@ public class ProductActivity extends AppCompatActivity {
     private View menuScrim;
     private boolean menuOpen;
     private String username = "Khách";
-    private String expandedCategory = "";
     private boolean suppressSearchChange;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setupContent();
+        username = getSharedPreferences("user_data", MODE_PRIVATE)
+                .getString("username", "Khách");
+        findViews();
+        setupHeader();
+        setupMenu();
+        setupBottomNavigation(savedInstanceState);
+        setupSearch();
+        setupBackButton();
+        handleInitialIntent();
+    }
+
+    private void setupContent() {
         WindowCompat.enableEdgeToEdge(getWindow());
         setContentView(R.layout.activity_product);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (view, insets) -> {
@@ -44,11 +55,16 @@ public class ProductActivity extends AppCompatActivity {
             view.setPadding(bars.left, bars.top, bars.right, bars.bottom);
             return insets;
         });
-        username = getSharedPreferences("user_data", MODE_PRIVATE).getString("username", "Khách");
+    }
+
+    private void findViews() {
         edtSearch = findViewById(R.id.edtSearch);
         menuOverlay = findViewById(R.id.menuOverlay);
         menuPanel = findViewById(R.id.menuPanel);
         menuScrim = findViewById(R.id.menuScrim);
+    }
+
+    private void setupHeader() {
         findViewById(R.id.headerMenu).setOnClickListener(v -> openMenu());
         findViewById(R.id.headerBrand).setOnClickListener(v -> showAllProducts());
         findViewById(R.id.drawerBrand).setOnClickListener(v -> showAllProducts());
@@ -60,8 +76,9 @@ public class ProductActivity extends AppCompatActivity {
         findViewById(R.id.headerCart).setOnClickListener(v -> openCart());
         findViewById(R.id.closeMenu).setOnClickListener(v -> closeMenu());
         findViewById(R.id.menuScrim).setOnClickListener(v -> closeMenu());
-        setupMenu();
+    }
 
+    private void setupBottomNavigation(Bundle savedInstanceState) {
         bottomNavigation = findViewById(R.id.bottomNavigation);
         bottomNavigation.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.nav_category) {
@@ -85,7 +102,9 @@ public class ProductActivity extends AppCompatActivity {
         int selectedTab = savedInstanceState == null ? R.id.nav_home
                 : savedInstanceState.getInt(SELECTED_TAB, R.id.nav_home);
         bottomNavigation.setSelectedItemId(selectedTab);
+    }
 
+    private void setupSearch() {
         edtSearch.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -97,6 +116,9 @@ public class ProductActivity extends AppCompatActivity {
             }
             @Override public void afterTextChanged(Editable s) {}
         });
+    }
+
+    private void setupBackButton() {
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override public void handleOnBackPressed() {
                 if (menuOpen) {
@@ -109,8 +131,12 @@ public class ProductActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void handleInitialIntent() {
         if (getIntent().getBooleanExtra("open_menu", false)) openMenu();
-        if (getIntent().getBooleanExtra("open_profile", false)) bottomNavigation.setSelectedItemId(R.id.nav_profile);
+        if (getIntent().getBooleanExtra("open_profile", false))
+            bottomNavigation.setSelectedItemId(R.id.nav_profile);
     }
 
     @Override protected void onNewIntent(Intent intent) {
@@ -123,57 +149,7 @@ public class ProductActivity extends AppCompatActivity {
 
     private void setupMenu() {
         LinearLayout items = findViewById(R.id.menuItems);
-        items.removeAllViews();
-        String[][] groups = {
-                {"Áo thun", "Áo Thun Cổ Tròn", "Áo Thun Cổ Polo & Henley", "Áo Thun Tank Top", "Áo Thun Dệt Kim"},
-                {"Áo sơ mi", "Áo Sơ Mi Tay Ngắn", "Áo Sơ Mi Tay Dài"},
-                {"Áo khoác", "Áo Khoác Dù", "Áo Khoác Thun", "Áo Khoác Jean", "Áo Khoác Kaki"},
-                {"Quần jeans", "Quần Jeans Nguyên Bản", "Quần Jeans Ống Rộng"},
-                {"Quần dài", "Quần Dài Lưng Gài", "Quần Dài Lưng Thun"},
-                {"Quần tây", "Quần Tây Nam"},
-                {"Quần short", "Quần Short Lưng Thun", "Quần Short Jeans"}
-        };
-        for (String[] group : groups) {
-            String category = group[0];
-            TextView heading = new TextView(this);
-            heading.setText(category.toUpperCase(java.util.Locale.forLanguageTag("vi-VN"))
-                    + (category.equals(expandedCategory) ? "    ⌃" : "    ⌄"));
-            heading.setTextColor(getColor(R.color.text_primary));
-            heading.setTextSize(16);
-            heading.setGravity(android.view.Gravity.CENTER_VERTICAL);
-            heading.setPadding(dp(18), 0, dp(18), 0);
-            heading.setMinHeight(dp(58));
-            heading.setBackgroundResource(android.R.drawable.list_selector_background);
-            heading.setOnClickListener(v -> {
-                expandedCategory = category.equals(expandedCategory) ? "" : category;
-                setupMenu();
-            });
-            items.addView(heading);
-            if (!category.equals(expandedCategory)) continue;
-            TextView section = new TextView(this);
-            section.setText("THEO KIỂU SẢN PHẨM");
-            section.setTextSize(11);
-            section.setTextColor(getColor(R.color.text_secondary));
-            section.setPadding(dp(28), dp(14), 0, dp(6));
-            items.addView(section);
-            for (int i = 1; i < group.length; i++) {
-                String type = group[i];
-                TextView child = new TextView(this);
-                child.setText(type);
-                child.setTextColor(getColor(R.color.text_body));
-                child.setTextSize(14);
-                child.setGravity(android.view.Gravity.CENTER_VERTICAL);
-                child.setPadding(dp(28), 0, dp(12), 0);
-                child.setMinHeight(dp(48));
-                child.setBackgroundResource(android.R.drawable.list_selector_background);
-                child.setOnClickListener(v -> showCategory(type));
-                items.addView(child);
-            }
-        }
-    }
-
-    private int dp(int value) {
-        return (int) (value * getResources().getDisplayMetrics().density);
+        new CategoryMenu(this, items, this::showCategory).render();
     }
 
     private void showCategory(String type) {
