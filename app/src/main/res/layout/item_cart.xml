@@ -1,43 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
- xmlns:app="http://schemas.android.com/apk/res-auto"
- android:layout_width="match_parent" android:layout_height="wrap_content"
- android:orientation="vertical" android:paddingVertical="12dp">
- <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-  android:orientation="horizontal" android:gravity="top">
-  <com.google.android.material.checkbox.MaterialCheckBox android:id="@+id/cbCartItem"
-   android:layout_width="40dp" android:layout_height="48dp" />
-  <ImageView android:id="@+id/imgCartProduct" android:layout_width="88dp"
-   android:layout_height="112dp" android:scaleType="centerCrop"
-   android:src="@android:drawable/ic_menu_gallery" />
-  <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
-   android:layout_weight="1" android:layout_marginStart="12dp"
-   android:orientation="vertical">
-   <TextView android:id="@+id/tvCartName" android:layout_width="match_parent"
-    android:layout_height="wrap_content" android:maxLines="3"
-    android:textColor="@color/text_primary" android:textSize="15sp" />
-   <TextView android:id="@+id/tvCartPrice" android:layout_width="match_parent"
-    android:layout_height="wrap_content" android:layout_marginTop="6dp"
-    android:textColor="@color/text_secondary" android:textSize="14sp" />
-   <TextView android:id="@+id/tvCartDesc" android:layout_width="match_parent"
-    android:layout_height="wrap_content" android:layout_marginTop="6dp"
-    android:textColor="@color/text_secondary" android:textSize="13sp" />
-   <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:orientation="horizontal" android:gravity="center_vertical"
-    android:layout_marginTop="14dp">
-    <ImageButton android:id="@+id/btnDecreaseQuantity" android:layout_width="40dp"
-     android:layout_height="40dp" android:src="@drawable/ic_cart_minus"
-     android:contentDescription="@string/cart_decrease_quantity" />
-    <TextView android:id="@+id/tvCartQuantity" android:layout_width="40dp"
-     android:layout_height="wrap_content" android:gravity="center" />
-    <ImageButton android:id="@+id/btnIncreaseQuantity" android:layout_width="40dp"
-     android:layout_height="40dp" android:src="@drawable/ic_cart_plus"
-     android:contentDescription="@string/cart_increase_quantity" />
-    <com.google.android.material.button.MaterialButton android:id="@+id/btnRemoveCartItem"
-     style="@style/Widget.Material3.Button.TextButton"
-     android:layout_width="wrap_content" android:layout_height="wrap_content"
-     android:text="Xóa" />
-   </LinearLayout>
-  </LinearLayout>
- </LinearLayout>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingVertical="12dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="top">
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/cbCartItem"
+            android:layout_width="40dp"
+            android:layout_height="48dp" />
+        <ImageView
+            android:id="@+id/imgCartProduct"
+            android:layout_width="88dp"
+            android:layout_height="112dp"
+            android:scaleType="centerCrop"
+            android:src="@android:drawable/ic_menu_gallery" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvCartName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                android:textColor="@color/text_primary"
+                android:textSize="15sp" />
+            <TextView
+                android:id="@+id/tvCartPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tvCartDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="14dp">
+                <ImageButton
+                    android:id="@+id/btnDecreaseQuantity"
+                    android:background="@drawable/bg_cart_quantity_button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_cart_minus"
+                    android:contentDescription="@string/cart_decrease_quantity" />
+                <TextView
+                    android:id="@+id/tvCartQuantity"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" />
+                <ImageButton
+                    android:id="@+id/btnIncreaseQuantity"
+                    android:background="@drawable/bg_cart_quantity_button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_cart_plus"
+                    android:contentDescription="@string/cart_increase_quantity" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRemoveCartItem"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Xóa" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

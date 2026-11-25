@@ -1,7 +1,12 @@
 package com.example.loginpage.model;
 
 public class Product {
-    private final String id, name, price, description, category, imageUrl;
+    private final String id;
+    private final String name;
+    private final String price;
+    private final String description;
+    private final String category;
+    private final String imageUrl;
     private final int imageResId;
     private String size = "";
     private boolean checked = true;
@@ -9,19 +14,23 @@ public class Product {
 
     public Product(String id, String name, String price, String description, int imageResId,
                    String category, String imageUrl) {
-        this.id = id; this.name = name; this.price = price; this.description = description;
-        this.imageResId = imageResId; this.category = category; this.imageUrl = imageUrl;
-    }
-    public Product(String name, String price, String description, int imageResId,
-                   String category, String imageUrl) {
-        this(name, name, price, description, imageResId, category, imageUrl);
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.imageResId = imageResId;
+        this.category = category;
+        this.imageUrl = imageUrl;
     }
     public String getId() { return id; }
     public String getName() { return name; }
     public String getPrice() { return price; }
     public long getPriceValue() {
-        try { return Long.parseLong(price.replaceAll("[^0-9]", "")); }
-        catch (NumberFormatException ex) { return 0; }
+        try {
+            return Long.parseLong(price.replaceAll("[^0-9]", ""));
+        } catch (NumberFormatException exception) {
+            return 0;
+        }
     }
     public String getDescription() { return description; }
     public int getImageResId() { return imageResId; }
@@ -33,5 +42,9 @@ public class Product {
     public void setChecked(boolean checked) { this.checked = checked; }
     public int getQuantity() { return quantity; }
     public void increaseQuantity() { quantity++; }
-    public void decreaseQuantity() { if (quantity > 1) quantity--; }
+    public void decreaseQuantity() {
+        if (quantity > 1) {
+            quantity--;
+        }
+    }
 }

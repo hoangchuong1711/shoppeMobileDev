@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -10,24 +11,28 @@
     android:background="@color/shopee_orange_light"
     android:padding="24dp"
     tools:context=".ui.auth.MainActivity">
-
-    <!-- Màn đăng nhập YaMe -->
-    <com.google.android.material.card.MaterialCardView style="@style/AppCard"
+    <!-- Màn đăng nhập QuanAo -->
+    <com.google.android.material.card.MaterialCardView
+        style="@style/AppCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="16dp"
         app:cardElevation="4dp"
         app:cardBackgroundColor="@color/white">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center_horizontal"
             android:padding="24dp">
-
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="YaMe" android:textSize="36sp" android:textStyle="bold" android:textColor="@color/text_primary" android:layout_marginBottom="16dp" />
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary"
+                android:layout_marginBottom="16dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -35,7 +40,6 @@
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:textColor="@color/shopee_orange" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -44,7 +48,6 @@
                 android:textColor="@color/text_secondary"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="24dp" />
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/usernameInputLayout"
                 style="@style/AuthTextInputLayout"
@@ -52,7 +55,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="14dp"
                 android:hint="Tên đăng nhập">
-
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtUsername"
                     android:layout_width="match_parent"
@@ -62,7 +64,6 @@
                     android:textSize="15sp"
                     android:autofillHints="username" />
             </com.google.android.material.textfield.TextInputLayout>
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/passwordInputLayout"
                 style="@style/AuthTextInputLayout"
@@ -71,7 +72,6 @@
                 android:layout_marginBottom="22dp"
                 android:hint="Mật khẩu"
                 app:endIconMode="password_toggle">
-
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtPassword"
                     android:layout_width="match_parent"
@@ -81,7 +81,6 @@
                     android:textSize="15sp"
                     android:autofillHints="password" />
             </com.google.android.material.textfield.TextInputLayout>
-
             <Button
                 android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
@@ -91,7 +90,6 @@
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/shopee_orange" />
-
             <TextView
                 android:id="@+id/tvGoRegister"
                 android:layout_width="wrap_content"
@@ -101,8 +99,6 @@
                 android:textStyle="bold"
                 android:padding="12dp"
                 android:layout_marginTop="8dp" />
-
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
-
 </LinearLayout>

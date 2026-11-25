@@ -3,13 +3,11 @@
     <color name="black">#FF171717</color>
     <color name="white">#FFFFFFFF</color>
     <color name="shopee_orange">#171717</color>
-    <color name="shopee_orange_dark">#111111</color>
     <color name="shopee_orange_light">#F4F2EF</color>
     <color name="shopee_bg">#FAFAF8</color>
     <color name="text_primary">#202020</color>
     <color name="text_secondary">#666666</color>
     <color name="text_muted">#888888</color>
     <color name="text_body">#424242</color>
-    <color name="accent_teal">#333333</color>
     <color name="outline_light">#E5E3DF</color>
 </resources>

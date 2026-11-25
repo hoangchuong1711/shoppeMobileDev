@@ -6,13 +6,6 @@
         <item name="cardElevation">0dp</item>
     </style>
 
-    <style name="AppToolbar" parent="Widget.Material3.Toolbar">
-        <item name="android:background">@color/shopee_orange</item>
-        <item name="titleTextColor">@color/white</item>
-        <item name="subtitleTextColor">@color/shopee_orange_light</item>
-        <item name="navigationIconTint">@color/white</item>
-    </style>
-
     <style name="AppSearchField" parent="Widget.Material3.TextInputLayout.OutlinedBox">
         <item name="boxBackgroundColor">@color/white</item>
         <item name="boxStrokeColor">@color/white</item>

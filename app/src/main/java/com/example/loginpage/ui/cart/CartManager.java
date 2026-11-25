@@ -20,19 +20,26 @@ public final class CartManager {
         PRODUCTS.add(item);
     }
     public static void removeFromCart(Product product) { PRODUCTS.remove(product); }
-    public static int getItemCount() {
-        int count = 0;
-        for (Product product : PRODUCTS) count += product.getQuantity();
-        return count;
-    }
     public static long getSelectedTotal() {
         long total = 0;
-        for (Product product : PRODUCTS) if (product.isChecked()) total += product.getPriceValue() * product.getQuantity();
+        for (Product product : PRODUCTS) {
+            if (product.isChecked()) {
+                total += product.getPriceValue() * product.getQuantity();
+            }
+        }
         return total;
     }
     public static boolean hasSelection() {
-        for (Product product : PRODUCTS) if (product.isChecked()) return true;
+        for (Product product : PRODUCTS) {
+            if (product.isChecked()) return true;
+        }
         return false;
     }
-    public static void removeSelected() { PRODUCTS.removeIf(Product::isChecked); }
+    public static void removeSelected() {
+        PRODUCTS.removeIf(Product::isChecked);
+    }
+
+    public static void clear() {
+        PRODUCTS.clear();
+    }
 }

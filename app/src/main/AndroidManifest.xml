@@ -29,5 +29,10 @@
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".ui.catalog.ProductDetailActivity" android:exported="false" />
         <activity android:name=".ui.cart.CartActivity" android:exported="false" />
+        <activity android:name=".ui.cart.CheckoutActivity" android:exported="false" />
+        <activity android:name=".ui.cart.OrderSuccessActivity" android:exported="false" />
+        <activity android:name=".ui.profile.EditProfileActivity" android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ui.profile.OrdersActivity" android:exported="false" />
     </application>
 </manifest>

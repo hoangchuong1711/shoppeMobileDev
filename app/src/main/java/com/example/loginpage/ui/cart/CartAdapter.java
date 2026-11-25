@@ -41,7 +41,7 @@ public class CartAdapter extends ArrayAdapter<Product> {
 
         ProductImageLoader.load(row.findViewById(R.id.imgCartProduct), product);
         ((TextView) row.findViewById(R.id.tvCartName)).setText(product.getName());
-        ((TextView) row.findViewById(R.id.tvCartDesc)).setText("Size " + product.getSize() + " • " + product.getDescription());
+        ((TextView) row.findViewById(R.id.tvCartDesc)).setText("Size " + product.getSize());
         ((TextView) row.findViewById(R.id.tvCartPrice)).setText(product.getPrice());
         ((TextView) row.findViewById(R.id.tvCartQuantity))
                 .setText(String.valueOf(product.getQuantity()));

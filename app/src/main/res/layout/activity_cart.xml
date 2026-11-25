@@ -1,61 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
- xmlns:app="http://schemas.android.com/apk/res-auto"
- android:id="@+id/main" android:layout_width="match_parent"
- android:layout_height="match_parent" android:orientation="vertical"
- android:background="@color/white">
- <include layout="@layout/shop_header" />
- <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-  android:orientation="horizontal" android:gravity="center_vertical"
-  android:padding="16dp" android:layout_marginTop="24dp">
-  <TextView android:layout_width="0dp" android:layout_height="wrap_content"
-   android:layout_weight="1" android:text="Giỏ hàng của bạn"
-   android:textSize="28sp" android:textColor="@color/text_primary" />
-  <TextView android:id="@+id/continueShopping" android:layout_width="wrap_content"
-   android:layout_height="wrap_content" android:text="Tiếp tục mua sắm"
-   android:textColor="@color/text_primary" />
- </LinearLayout>
- <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-  android:orientation="horizontal" android:paddingHorizontal="16dp"
-  android:paddingVertical="12dp">
-  <TextView android:layout_width="0dp" android:layout_height="wrap_content"
-   android:layout_weight="1" android:text="SẢN PHẨM"
-   android:textSize="11sp" android:textColor="@color/text_secondary" />
-  <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-   android:text="TỔNG" android:textSize="11sp" android:textColor="@color/text_secondary" />
- </LinearLayout>
- <ListView android:id="@+id/lvCart" android:layout_width="match_parent"
-  android:layout_height="0dp" android:layout_weight="1"
-  android:paddingHorizontal="12dp" android:divider="@android:color/transparent"
-  android:dividerHeight="8dp" />
- <TextView android:id="@+id/tvEmptyCart" android:layout_width="match_parent"
-  android:layout_height="0dp" android:layout_weight="1" android:gravity="center"
-  android:text="Giỏ hàng đang trống" android:visibility="gone" />
- <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-  android:orientation="vertical" android:padding="16dp">
-  <com.google.android.material.button.MaterialButton android:id="@+id/btnSelectAll"
-   style="@style/Widget.Material3.Button.TextButton"
-   android:layout_width="wrap_content" android:layout_height="wrap_content"
-   android:text="Chọn / bỏ chọn tất cả" />
-  <TextView android:id="@+id/tvCartTotal" android:layout_width="match_parent"
-   android:layout_height="wrap_content" android:gravity="end" android:textSize="17sp"
-   android:textColor="@color/text_primary" />
-  <com.google.android.material.button.MaterialButton android:id="@+id/btnCheckout"
-   android:layout_width="match_parent" android:layout_height="wrap_content"
-   android:layout_marginTop="16dp" android:text="Thanh toán" />
- </LinearLayout>
- <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-  android:orientation="horizontal" android:background="@color/black"
-  android:padding="14dp">
-  <TextView android:layout_width="0dp" android:layout_height="wrap_content"
-   android:layout_weight="1" android:text="◇  MIỄN PHÍ SHIP"
-   android:textColor="@color/white" android:textSize="13sp" />
-  <TextView android:layout_width="0dp" android:layout_height="wrap_content"
-   android:layout_weight="1" android:text="♢  BẢO HÀNH 365 NGÀY"
-   android:textColor="@color/white" android:textSize="13sp" />
- </LinearLayout>
- <com.google.android.material.bottomnavigation.BottomNavigationView
-  android:id="@+id/cartBottomNavigation" android:layout_width="match_parent"
-  android:layout_height="wrap_content" app:menu="@menu/bottom_nav_menu"
-  app:itemIconTint="@color/bottom_nav_color" app:itemTextColor="@color/bottom_nav_color" />
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <include layout="@layout/shop_header" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:layout_marginTop="24dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Giỏ hàng của bạn"
+            android:textSize="28sp"
+            android:textColor="@color/text_primary" />
+        <TextView
+            android:id="@+id/continueShopping"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tiếp tục mua sắm"
+            android:textColor="@color/text_primary" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="SẢN PHẨM"
+            android:textSize="11sp"
+            android:textColor="@color/text_secondary" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TỔNG"
+            android:textSize="11sp"
+            android:textColor="@color/text_secondary" />
+    </LinearLayout>
+    <ListView
+        android:id="@+id/lvCart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingHorizontal="12dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="8dp" />
+    <TextView
+        android:id="@+id/tvEmptyCart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Giỏ hàng đang trống"
+        android:visibility="gone" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSelectAll"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chọn / bỏ chọn tất cả" />
+        <TextView
+            android:id="@+id/tvCartTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:textSize="17sp"
+            android:textColor="@color/text_primary" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCheckout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Thanh toán" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/black"
+        android:padding="14dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="◇  MIỄN PHÍ SHIP"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="♢  BẢO HÀNH 365 NGÀY"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+    </LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/cartBottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/bottom_nav_menu"
+        app:itemIconTint="@color/bottom_nav_color"
+        app:itemTextColor="@color/bottom_nav_color" />
 </LinearLayout>

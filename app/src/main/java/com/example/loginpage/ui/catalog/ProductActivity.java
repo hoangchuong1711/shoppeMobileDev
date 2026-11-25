@@ -10,9 +10,11 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.activity.OnBackPressedCallback;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
@@ -25,11 +27,15 @@ public class ProductActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigation;
     private EditText edtSearch;
     private View menuOverlay;
+    private View menuPanel;
+    private View menuScrim;
+    private boolean menuOpen;
     private String username = "Khách";
     private String expandedCategory = "";
     private boolean suppressSearchChange;
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         WindowCompat.enableEdgeToEdge(getWindow());
         setContentView(R.layout.activity_product);
@@ -41,6 +47,8 @@ public class ProductActivity extends AppCompatActivity {
         username = getSharedPreferences("user_data", MODE_PRIVATE).getString("username", "Khách");
         edtSearch = findViewById(R.id.edtSearch);
         menuOverlay = findViewById(R.id.menuOverlay);
+        menuPanel = findViewById(R.id.menuPanel);
+        menuScrim = findViewById(R.id.menuScrim);
         findViewById(R.id.headerMenu).setOnClickListener(v -> openMenu());
         findViewById(R.id.headerBrand).setOnClickListener(v -> showAllProducts());
         findViewById(R.id.drawerBrand).setOnClickListener(v -> showAllProducts());
@@ -56,10 +64,19 @@ public class ProductActivity extends AppCompatActivity {
 
         bottomNavigation = findViewById(R.id.bottomNavigation);
         bottomNavigation.setOnItemSelectedListener(item -> {
-            if (item.getItemId() == R.id.nav_category) { openMenu(); return false; }
-            if (item.getItemId() == R.id.nav_cart) { openCart(); return false; }
-            if (item.getItemId() == R.id.nav_home) resetHomeContent();
-            else showTab(item.getItemId());
+            if (item.getItemId() == R.id.nav_category) {
+                openMenu();
+                return false;
+            }
+            if (item.getItemId() == R.id.nav_cart) {
+                openCart();
+                return false;
+            }
+            if (item.getItemId() == R.id.nav_home) {
+                resetHomeContent();
+            } else {
+                showTab(item.getItemId());
+            }
             return true;
         });
         bottomNavigation.setOnItemReselectedListener(item -> {
@@ -79,6 +96,18 @@ public class ProductActivity extends AppCompatActivity {
                 if (fragment instanceof HomeFragment) ((HomeFragment) fragment).filter(s.toString());
             }
             @Override public void afterTextChanged(Editable s) {}
+        });
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override public void handleOnBackPressed() {
+                if (menuOpen) {
+                    closeMenu();
+                } else if (bottomNavigation.getSelectedItemId() != R.id.nav_home) {
+                    showAllProducts();
+                } else {
+                    setEnabled(false);
+                    getOnBackPressedDispatcher().onBackPressed();
+                }
+            }
         });
         if (getIntent().getBooleanExtra("open_menu", false)) openMenu();
         if (getIntent().getBooleanExtra("open_profile", false)) bottomNavigation.setSelectedItemId(R.id.nav_profile);
@@ -137,7 +166,7 @@ public class ProductActivity extends AppCompatActivity {
                 child.setPadding(dp(28), 0, dp(12), 0);
                 child.setMinHeight(dp(48));
                 child.setBackgroundResource(android.R.drawable.list_selector_background);
-                child.setOnClickListener(v -> showCategory(category, type));
+                child.setOnClickListener(v -> showCategory(type));
                 items.addView(child);
             }
         }
@@ -147,7 +176,7 @@ public class ProductActivity extends AppCompatActivity {
         return (int) (value * getResources().getDisplayMetrics().density);
     }
 
-    private void showCategory(String category, String type) {
+    private void showCategory(String type) {
         closeMenu();
         clearSearch();
         if (bottomNavigation.getSelectedItemId() != R.id.nav_home)
@@ -155,7 +184,7 @@ public class ProductActivity extends AppCompatActivity {
         else showTab(R.id.nav_home);
         getSupportFragmentManager().executePendingTransactions();
         Fragment fragment = getSupportFragmentManager().findFragmentByTag("tab_" + R.id.nav_home);
-        if (fragment instanceof HomeFragment) ((HomeFragment) fragment).showCategory(category, type);
+        if (fragment instanceof HomeFragment) ((HomeFragment) fragment).showCategory(type);
     }
 
     public void showAllProducts() {
@@ -179,9 +208,37 @@ public class ProductActivity extends AppCompatActivity {
         suppressSearchChange = false;
     }
 
-    private void openMenu() { menuOverlay.setVisibility(View.VISIBLE); }
-    private void closeMenu() { menuOverlay.setVisibility(View.GONE); }
-    private void openCart() { startActivity(new Intent(this, CartActivity.class)); }
+    private void openMenu() {
+        if (menuOpen) return;
+        menuOpen = true;
+        menuPanel.animate().cancel();
+        menuScrim.animate().cancel();
+        menuOverlay.setVisibility(View.VISIBLE);
+        menuPanel.post(() -> {
+            if (!menuOpen) return;
+            menuPanel.setTranslationX(-menuPanel.getWidth());
+            menuScrim.setAlpha(0f);
+            menuPanel.animate().translationX(0f).setDuration(200)
+                    .setInterpolator(new DecelerateInterpolator()).start();
+            menuScrim.animate().alpha(1f).setDuration(200).start();
+        });
+    }
+
+    private void closeMenu() {
+        if (!menuOpen) return;
+        menuOpen = false;
+        menuPanel.animate().cancel();
+        menuScrim.animate().cancel();
+        menuPanel.animate().translationX(-menuPanel.getWidth()).setDuration(200)
+                .setInterpolator(new DecelerateInterpolator())
+                .withEndAction(() -> {
+                    if (!menuOpen) menuOverlay.setVisibility(View.GONE);
+                }).start();
+        menuScrim.animate().alpha(0f).setDuration(200).start();
+    }
+    private void openCart() {
+        startActivity(new Intent(this, CartActivity.class));
+    }
 
     private void showTab(int itemId) {
         Fragment target = getSupportFragmentManager().findFragmentByTag("tab_" + itemId);
@@ -198,23 +255,23 @@ public class ProductActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-    public String getUsername() { return username; }
-    public String getSearchQuery() { return edtSearch.getText().toString(); }
+    public String getUsername() {
+        return username;
+    }
+
     public void openProductDetail(Product product) {
-        getSharedPreferences("selected_product", MODE_PRIVATE).edit()
-                .putString("id", product.getId()).putString("name", product.getName())
-                .putString("price", product.getPrice())
-                .putString("description", product.getDescription())
-                .putInt("image", product.getImageResId())
-                .putString("category", product.getCategory())
-                .putString("image_url", product.getImageUrl()).apply();
-        startActivity(new Intent(this, ProductDetailActivity.class));
+        Intent intent = new Intent(this, ProductDetailActivity.class);
+        intent.putExtra("id", product.getId());
+        intent.putExtra("name", product.getName());
+        intent.putExtra("price", product.getPrice());
+        intent.putExtra("description", product.getDescription());
+        intent.putExtra("image", product.getImageResId());
+        intent.putExtra("category", product.getCategory());
+        intent.putExtra("image_url", product.getImageUrl());
+        startActivity(intent);
     }
-    @Override public void onBackPressed() {
-        if (menuOverlay.getVisibility() == View.VISIBLE) closeMenu();
-        else super.onBackPressed();
-    }
-    @Override protected void onSaveInstanceState(Bundle outState) {
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
         outState.putInt(SELECTED_TAB, bottomNavigation.getSelectedItemId());
         super.onSaveInstanceState(outState);
     }

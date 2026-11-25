@@ -1,48 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
- xmlns:app="http://schemas.android.com/apk/res-auto"
- android:id="@+id/main" android:layout_width="match_parent" android:layout_height="match_parent"
- android:orientation="vertical" android:background="@color/white">
- <include layout="@layout/shop_header" />
- <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
-  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-   android:orientation="vertical">
-   <ImageView android:id="@+id/imgDetailProduct" android:layout_width="match_parent"
-    android:layout_height="350dp" android:scaleType="centerCrop"
-    android:src="@android:drawable/ic_menu_gallery" />
-   <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:orientation="vertical" android:padding="20dp">
-    <TextView android:id="@+id/tvDetailName" android:layout_width="match_parent"
-     android:layout_height="wrap_content" android:textSize="22sp" android:textStyle="bold"
-     android:textColor="@color/text_primary" />
-    <TextView android:id="@+id/tvDetailPrice" android:layout_width="match_parent"
-     android:layout_height="wrap_content" android:layout_marginTop="8dp"
-     android:textSize="20sp" android:textColor="@color/text_primary" />
-    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-     android:layout_marginTop="24dp" android:text="Chọn size"
-     android:textColor="@color/text_primary" android:textStyle="bold" />
-    <com.google.android.material.chip.ChipGroup android:id="@+id/sizeChipGroup"
-     android:layout_width="match_parent" android:layout_height="wrap_content"
-     app:singleSelection="true" android:layout_marginTop="8dp">
-     <com.google.android.material.chip.Chip android:layout_width="wrap_content"
-      android:layout_height="wrap_content" android:text="S" android:checkable="true" />
-     <com.google.android.material.chip.Chip android:layout_width="wrap_content"
-      android:layout_height="wrap_content" android:text="M" android:checkable="true" />
-     <com.google.android.material.chip.Chip android:layout_width="wrap_content"
-      android:layout_height="wrap_content" android:text="L" android:checkable="true" />
-     <com.google.android.material.chip.Chip android:layout_width="wrap_content"
-      android:layout_height="wrap_content" android:text="XL" android:checkable="true" />
-    </com.google.android.material.chip.ChipGroup>
-    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-     android:layout_marginTop="24dp" android:text="Mô tả sản phẩm"
-     android:textStyle="bold" android:textColor="@color/text_primary" />
-    <TextView android:id="@+id/tvDetailDesc" android:layout_width="match_parent"
-     android:layout_height="wrap_content" android:layout_marginTop="8dp"
-     android:textSize="14sp" android:textColor="@color/text_secondary" />
-   </LinearLayout>
-  </LinearLayout>
- </ScrollView>
- <com.google.android.material.button.MaterialButton android:id="@+id/btnOrder"
-  android:layout_width="match_parent" android:layout_height="wrap_content"
-  android:layout_margin="12dp" android:text="Thêm vào giỏ hàng" />
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <include layout="@layout/shop_header" />
+    <TextView
+        android:id="@+id/detailBack"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:text="‹  Quay lại"
+        android:textSize="18sp"
+        android:textColor="@color/text_primary" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/imgDetailProduct"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:scaleType="centerCrop"
+                android:src="@android:drawable/ic_menu_gallery" />
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fillViewport="true"
+                android:scrollbars="none">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="10dp">
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/thumbCardProduct"
+                        android:layout_width="76dp"
+                        android:layout_height="76dp"
+                        android:layout_marginEnd="8dp"
+                        app:cardCornerRadius="4dp"
+                        app:strokeWidth="2dp">
+                        <ImageView
+                            android:id="@+id/thumbProduct"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:contentDescription="Ảnh sản phẩm" />
+                    </com.google.android.material.card.MaterialCardView>
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/thumbCardGuideOne"
+                        android:layout_width="76dp"
+                        android:layout_height="76dp"
+                        android:layout_marginEnd="8dp"
+                        app:cardCornerRadius="4dp"
+                        app:strokeWidth="2dp">
+                        <ImageView
+                            android:id="@+id/thumbGuideOne"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:contentDescription="Ảnh hướng dẫn thứ nhất" />
+                    </com.google.android.material.card.MaterialCardView>
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/thumbCardGuideTwo"
+                        android:layout_width="76dp"
+                        android:layout_height="76dp"
+                        app:cardCornerRadius="4dp"
+                        app:strokeWidth="2dp">
+                        <ImageView
+                            android:id="@+id/thumbGuideTwo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:contentDescription="Ảnh hướng dẫn thứ hai" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+            </HorizontalScrollView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+                <TextView
+                    android:id="@+id/tvDetailName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="27sp"
+                    android:lineSpacingExtra="3dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary" />
+                <TextView
+                    android:id="@+id/tvDetailPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_primary" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="Chọn size"
+                    android:textColor="@color/text_primary"
+                    android:textStyle="bold" />
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/sizeChipGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    android:layout_marginTop="8dp">
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="S"
+                        android:checkable="true" />
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="M"
+                        android:checkable="true" />
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="L"
+                        android:checkable="true" />
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="XL"
+                        android:checkable="true" />
+                </com.google.android.material.chip.ChipGroup>
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/productInfoTabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    app:tabMode="fixed"
+                    app:tabGravity="fill"
+                    app:tabIndicatorColor="@color/text_primary"
+                    app:tabSelectedTextColor="@color/text_primary"
+                    app:tabTextColor="@color/text_secondary">
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Đánh giá" />
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Câu hỏi" />
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mô tả" />
+                </com.google.android.material.tabs.TabLayout>
+                <LinearLayout
+                    android:id="@+id/reviewsPanel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="8dp"
+                        android:text="Nội dung minh họa · Chưa có đánh giá từ người mua"
+                        android:textColor="@color/text_muted"
+                        android:textSize="12sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/faqPanel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical"
+                    android:visibility="gone" />
+                <LinearLayout
+                    android:id="@+id/descriptionSections"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:text="Thêm vào giỏ hàng" />
 </LinearLayout>

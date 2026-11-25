@@ -41,6 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
         confirmInputLayout = findViewById(R.id.confirmInputLayout);
         findViewById(R.id.btnRegister).setOnClickListener(view -> handleRegister());
         findViewById(R.id.tvBackLogin).setOnClickListener(view -> finish());
+        findViewById(R.id.registerBack).setOnClickListener(view -> finish());
     }
 
     // Kiểm tra dữ liệu đăng ký trước khi lưu tài khoản cục bộ.
