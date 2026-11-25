@@ -1,40 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F5F5F5"
-    tools:context=".ProductDetailActivity">
+    android:background="@color/shopee_bg"
+    tools:context=".ui.catalog.ProductDetailActivity">
 
-    <!-- 1. Thanh Header trên cùng tông cam Shopee -->
-    <LinearLayout
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/detailToolbar"
+        style="@style/AppToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:background="#EE4D2D"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="14dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="CHI TIẾT SẢN PHẨM"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF" />
-
-        <TextView
-            android:id="@+id/tvDetailUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tài khoản: Khách"
-            android:textSize="13sp"
-            android:textColor="#FFF2EE" />
-    </LinearLayout>
+        app:title="Chi tiết sản phẩm"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:navigationContentDescription="Quay lại" />
 
     <!-- 2. Phần thân cuộn được -->
     <ScrollView
@@ -52,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
                 android:gravity="center"
-                android:background="#FFF2EE">
+                android:background="@color/shopee_orange_light">
 
                 <ImageView
                     android:id="@+id/imgDetailProduct"
@@ -67,7 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="#FFFFFF"
+                android:background="@color/white"
                 android:padding="16dp"
                 android:layout_marginBottom="8dp">
 
@@ -78,7 +60,7 @@
                     android:text="29.990.000 đ"
                     android:textSize="24sp"
                     android:textStyle="bold"
-                    android:textColor="#EE4D2D" />
+                    android:textColor="@color/shopee_orange" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -93,8 +75,8 @@
                         android:text="Yêu thích+"
                         android:textSize="11sp"
                         android:textStyle="bold"
-                        android:textColor="#FFFFFF"
-                        android:background="#EE4D2D"
+                        android:textColor="@color/white"
+                        android:background="@color/shopee_orange"
                         android:paddingHorizontal="6dp"
                         android:paddingVertical="2dp"
                         android:layout_marginEnd="8dp" />
@@ -106,7 +88,7 @@
                         android:text="Tên sản phẩm"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:textColor="#222222" />
+                        android:textColor="@color/text_primary" />
                 </LinearLayout>
 
                 <TextView
@@ -114,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:text="⭐ 4.9/5.0   |   Đã bán 1,2k"
                     android:textSize="13sp"
-                    android:textColor="#757575"
+                    android:textColor="@color/text_secondary"
                     android:layout_marginTop="10dp" />
             </LinearLayout>
 
@@ -123,7 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="#FFFFFF"
+                android:background="@color/white"
                 android:padding="16dp"
                 android:layout_marginBottom="8dp">
 
@@ -133,14 +115,14 @@
                     android:text="Miễn phí vận chuyển Shopee Express"
                     android:textSize="14sp"
                     android:textStyle="bold"
-                    android:textColor="#00BFA5" />
+                    android:textColor="@color/accent_teal" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nhận hàng từ 2 - 3 ngày • Đổi trả miễn phí 15 ngày"
                     android:textSize="13sp"
-                    android:textColor="#757575"
+                    android:textColor="@color/text_secondary"
                     android:layout_marginTop="4dp" />
             </LinearLayout>
 
@@ -149,7 +131,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="#FFFFFF"
+                android:background="@color/white"
                 android:padding="16dp"
                 android:layout_marginBottom="16dp">
 
@@ -159,7 +141,7 @@
                     android:text="CHI TIẾT SẢN PHẨM"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    android:textColor="#222222"
+                    android:textColor="@color/text_primary"
                     android:layout_marginBottom="8dp" />
 
                 <TextView
@@ -168,14 +150,14 @@
                     android:layout_height="wrap_content"
                     android:text="Mô tả sản phẩm"
                     android:textSize="14sp"
-                    android:textColor="#424242" />
+                    android:textColor="@color/text_body" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="\n• Tình trạng: Mới 100% chính hãng Shopee Mall\n• Bảo hành: 12 tháng toàn quốc"
                     android:textSize="14sp"
-                    android:textColor="#757575" />
+                    android:textColor="@color/text_secondary" />
             </LinearLayout>
 
         </LinearLayout>
@@ -186,7 +168,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#FFFFFF"
+        android:background="@color/white"
         android:padding="10dp"
         android:elevation="8dp">
 
@@ -197,8 +179,8 @@
             android:layout_weight="1"
             android:text="Quay lại"
             android:textSize="14sp"
-            android:textColor="#EE4D2D"
-            android:backgroundTint="#FFF2EE"
+            android:textColor="@color/shopee_orange"
+            android:backgroundTint="@color/shopee_orange_light"
             android:layout_marginEnd="8dp" />
 
         <Button
@@ -209,8 +191,8 @@
             android:text="Thêm vào giỏ hàng"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="#EE4D2D" />
+            android:textColor="@color/white"
+            android:backgroundTint="@color/shopee_orange" />
     </LinearLayout>
 
 </LinearLayout>

@@ -4,6 +4,7 @@ import com.example.loginpage.R;
 import com.example.loginpage.model.Product;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,10 +29,16 @@ public class CartActivity extends AppCompatActivity {
         });
 
         ArrayList<Product> products = CartManager.getCartList();
-        CartAdapter adapter = new CartAdapter(this, products);
-        ((ListView) findViewById(R.id.lvCart)).setAdapter(adapter);
-        findViewById(R.id.btnBackCart).setOnClickListener(view -> finish());
-        findViewById(R.id.btnSelectAll).setOnClickListener(view -> {
+        Button selectAllButton = findViewById(R.id.btnSelectAll);
+        CartAdapter adapter = new CartAdapter(this, products,
+                () -> selectAllButton.setEnabled(!products.isEmpty()));
+        ListView listView = findViewById(R.id.lvCart);
+        listView.setEmptyView(findViewById(R.id.tvEmptyCart));
+        listView.setAdapter(adapter);
+        selectAllButton.setEnabled(!products.isEmpty());
+        ((com.google.android.material.appbar.MaterialToolbar) findViewById(R.id.cartToolbar))
+                .setNavigationOnClickListener(view -> finish());
+        selectAllButton.setOnClickListener(view -> {
             boolean selectAll = false;
             for (Product product : products) {
                 if (!product.isChecked()) {

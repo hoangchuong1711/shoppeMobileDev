@@ -121,6 +121,6 @@ public class ProductActivity extends AppCompatActivity {
     // Cập nhật số lượng giỏ khi quay về từ màn chi tiết hoặc giỏ hàng.
     @Override protected void onResume() {
         super.onResume();
-        tvCartBadge.setText(String.valueOf(CartManager.getCartList().size()));
+        tvCartBadge.setText(String.valueOf(CartManager.getItemCount()));
     }
 }

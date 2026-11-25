@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5">
+    android:background="@color/shopee_bg">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,19 +13,19 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:background="#EE4D2D"
+            android:background="@color/shopee_orange"
             android:padding="20dp">
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView style="@style/AppCard"
                 android:layout_width="68dp"
                 android:layout_height="68dp"
                 app:cardCornerRadius="34dp"
-                app:cardBackgroundColor="#FFFFFF">
+                app:cardBackgroundColor="@color/white">
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="12dp"
                     android:src="@drawable/ic_nav_user" />
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -38,21 +38,21 @@
                     android:text="Khách"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="@color/white" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="Thành viên Bạc • Người theo dõi: 12"
                     android:textSize="12sp"
-                    android:textColor="#FFF2EE" />
+                    android:textColor="@color/shopee_orange_light" />
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="#FFFFFF"
+            android:background="@color/white"
             android:padding="16dp"
             android:orientation="vertical">
             <TextView
@@ -61,7 +61,7 @@
                 android:text="Đơn mua"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:textColor="#222222" />
+                android:textColor="@color/text_primary" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -69,19 +69,19 @@
                 android:orientation="horizontal">
                 <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
                     <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/ic_order_confirm" />
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Chờ xác nhận" android:textSize="11sp" android:textColor="#222222" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Chờ xác nhận" android:textSize="11sp" android:textColor="@color/text_primary" />
                 </LinearLayout>
                 <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
                     <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/ic_order_pickup" />
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Chờ lấy hàng" android:textSize="11sp" android:textColor="#222222" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Chờ lấy hàng" android:textSize="11sp" android:textColor="@color/text_primary" />
                 </LinearLayout>
                 <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
                     <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/ic_order_shipping" />
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Chờ giao hàng" android:textSize="11sp" android:textColor="#222222" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Chờ giao hàng" android:textSize="11sp" android:textColor="@color/text_primary" />
                 </LinearLayout>
                 <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
                     <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/ic_order_rate" />
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Đánh giá" android:textSize="11sp" android:textColor="#222222" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Đánh giá" android:textSize="11sp" android:textColor="@color/text_primary" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -89,15 +89,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="#FFFFFF"
+            android:background="@color/white"
             android:padding="16dp"
             android:orientation="vertical">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Thông tin cá nhân" android:textSize="15sp" android:textStyle="bold" android:textColor="#222222" />
-            <TextView android:id="@+id/tvProfileInfoName" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="• Tên tài khoản: Khách" android:textSize="14sp" android:textColor="#424242" />
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="6dp" android:text="• Số điện thoại: 0901 234 567" android:textSize="14sp" android:textColor="#424242" />
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="6dp" android:text="• Email: khachhang@shopee.vn" android:textSize="14sp" android:textColor="#424242" />
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="6dp" android:text="• Địa chỉ: Quận 1, TP. Hồ Chí Minh" android:textSize="14sp" android:textColor="#424242" />
-            <Button android:id="@+id/btnLogout" android:layout_width="match_parent" android:layout_height="46dp" android:layout_marginTop="14dp" android:text="Đăng xuất" android:textColor="#EE4D2D" android:backgroundTint="#FFF2EE" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Thông tin cá nhân" android:textSize="15sp" android:textStyle="bold" android:textColor="@color/text_primary" />
+            <TextView android:id="@+id/tvProfileInfoName" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="• Tên tài khoản: Khách" android:textSize="14sp" android:textColor="@color/text_body" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="6dp" android:text="• Số điện thoại: 0901 234 567" android:textSize="14sp" android:textColor="@color/text_body" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="6dp" android:text="• Email: khachhang@shopee.vn" android:textSize="14sp" android:textColor="@color/text_body" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="6dp" android:text="• Địa chỉ: Quận 1, TP. Hồ Chí Minh" android:textSize="14sp" android:textColor="@color/text_body" />
+            <Button android:id="@+id/btnLogout" android:layout_width="match_parent" android:layout_height="46dp" android:layout_marginTop="14dp" android:text="Đăng xuất" android:textColor="@color/shopee_orange" android:backgroundTint="@color/shopee_orange_light" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

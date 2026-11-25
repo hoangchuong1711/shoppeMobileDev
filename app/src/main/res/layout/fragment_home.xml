@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F5F5F5">
+    android:background="@color/shopee_bg">
 
     <!-- Header Gợi ý hôm nay -->
     <LinearLayout
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:background="#FFFFFF"
+        android:background="@color/white"
         android:paddingHorizontal="14dp"
         android:paddingVertical="10dp"
         android:layout_marginBottom="4dp">
@@ -24,7 +24,7 @@
             android:text="GỢI Ý HÔM NAY"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:textColor="#EE4D2D" />
+            android:textColor="@color/shopee_orange" />
 
         <TextView
             android:id="@+id/tvWelcomeUser"
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:text="Xin chào, Khách!"
             android:textSize="12sp"
-            android:textColor="#757575" />
+            android:textColor="@color/text_secondary" />
     </LinearLayout>
 
     <!-- GridView 2 cột sản phẩm -->

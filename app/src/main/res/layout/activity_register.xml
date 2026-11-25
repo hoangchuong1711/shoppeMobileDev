@@ -7,16 +7,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="#FFF2EE"
+    android:background="@color/shopee_orange_light"
     android:padding="24dp"
-    tools:context=".RegisterActivity">
+    tools:context=".ui.auth.RegisterActivity">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView style="@style/AppCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="16dp"
         app:cardElevation="4dp"
-        app:cardBackgroundColor="#FFFFFF">
+        app:cardBackgroundColor="@color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,49 +31,73 @@
                 android:text="TẠO TÀI KHOẢN"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                android:textColor="#EE4D2D" />
+                android:textColor="@color/shopee_orange" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Điền thông tin bên dưới để đăng ký"
                 android:textSize="14sp"
-                android:textColor="#757575"
+                android:textColor="@color/text_secondary"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="24dp" />
 
-            <EditText
-                android:id="@+id/edtRegUsername"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/usernameInputLayout"
+                style="@style/AuthTextInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/bg_input"
-                android:hint="Tên đăng nhập"
-                android:paddingHorizontal="16dp"
-                android:inputType="text"
-                android:textSize="15sp"
-                android:layout_marginBottom="14dp" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:hint="Tên đăng nhập">
 
-            <EditText
-                android:id="@+id/edtRegPassword"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/bg_input"
-                android:hint="Mật khẩu (tối thiểu 6 ký tự)"
-                android:paddingHorizontal="16dp"
-                android:inputType="textPassword"
-                android:textSize="15sp"
-                android:layout_marginBottom="14dp" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtRegUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:textSize="15sp"
+                    android:autofillHints="username" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:id="@+id/edtRegConfirm"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordInputLayout"
+                style="@style/AuthTextInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/bg_input"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:hint="Mật khẩu"
+                app:helperText="Tối thiểu 6 ký tự"
+                app:endIconMode="password_toggle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtRegPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:textSize="15sp"
+                    android:autofillHints="newPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/confirmInputLayout"
+                style="@style/AuthTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="22dp"
                 android:hint="Nhập lại mật khẩu"
-                android:paddingHorizontal="16dp"
-                android:inputType="textPassword"
-                android:textSize="15sp"
-                android:layout_marginBottom="22dp" />
+                app:endIconMode="password_toggle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtRegConfirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:textSize="15sp"
+                    android:autofillHints="newPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btnRegister"
@@ -82,20 +106,20 @@
                 android:text="Đăng ký"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:backgroundTint="#EE4D2D" />
+                android:textColor="@color/white"
+                android:backgroundTint="@color/shopee_orange" />
 
             <TextView
                 android:id="@+id/tvBackLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Đã có tài khoản? Đăng nhập"
-                android:textColor="#EE4D2D"
+                android:textColor="@color/shopee_orange"
                 android:textStyle="bold"
                 android:padding="12dp"
                 android:layout_marginTop="8dp" />
 
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>

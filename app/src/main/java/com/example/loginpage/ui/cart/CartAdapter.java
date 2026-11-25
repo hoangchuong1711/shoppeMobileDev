@@ -19,23 +19,19 @@ import java.util.List;
 import java.util.Objects;
 
 public class CartAdapter extends ArrayAdapter<Product> {
-    public CartAdapter(@NonNull Context context, @NonNull List<Product> products) {
+    private final Runnable onCartChanged;
+
+    public CartAdapter(@NonNull Context context, @NonNull List<Product> products,
+                       @NonNull Runnable onCartChanged) {
         super(context, R.layout.item_cart, products);
+        this.onCartChanged = onCartChanged;
     }
 
-    // Hiện một dòng giỏ hàng; gỡ listener trước khi gán lại CheckBox.
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View row;
-        if (convertView != null) {
-            // Có dòng cũ rồi → dùng lại
-            row = convertView;
-        } else {
-            // Chưa có dòng để dùng lại → tạo dòng mới từ XML
-            row = LayoutInflater.from(getContext())
-                    .inflate(R.layout.item_cart, parent, false);
-        }
+        View row = convertView != null ? convertView
+                : LayoutInflater.from(getContext()).inflate(R.layout.item_cart, parent, false);
         Product product = Objects.requireNonNull(getItem(position));
 
         CheckBox checkBox = row.findViewById(R.id.cbCartItem);
@@ -47,6 +43,31 @@ public class CartAdapter extends ArrayAdapter<Product> {
         ((TextView) row.findViewById(R.id.tvCartName)).setText(product.getName());
         ((TextView) row.findViewById(R.id.tvCartDesc)).setText(product.getDescription());
         ((TextView) row.findViewById(R.id.tvCartPrice)).setText(product.getPrice());
+        ((TextView) row.findViewById(R.id.tvCartQuantity))
+                .setText(String.valueOf(product.getQuantity()));
+
+        View decreaseButton = row.findViewById(R.id.btnDecreaseQuantity);
+        decreaseButton.setEnabled(product.getQuantity() > 1);
+        decreaseButton.setAlpha(product.getQuantity() > 1 ? 1f : 0.4f);
+        decreaseButton.setOnClickListener(view -> {
+            product.decreaseQuantity();
+            notifyDataSetChanged();
+            onCartChanged.run();
+        });
+
+        View increaseButton = row.findViewById(R.id.btnIncreaseQuantity);
+        increaseButton.setEnabled(product.getQuantity() < Integer.MAX_VALUE);
+        increaseButton.setOnClickListener(view -> {
+            product.increaseQuantity();
+            notifyDataSetChanged();
+            onCartChanged.run();
+        });
+
+        row.findViewById(R.id.btnRemoveCartItem).setOnClickListener(view -> {
+            CartManager.removeFromCart(product);
+            notifyDataSetChanged();
+            onCartChanged.run();
+        });
         return row;
     }
 }

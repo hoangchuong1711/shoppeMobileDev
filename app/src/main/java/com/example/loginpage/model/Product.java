@@ -8,6 +8,7 @@ public class Product {
     private final String category;
     private final String imageUrl;
     private boolean checked;
+    private int quantity = 1;
 
     public Product(String name, String price, String description, int imageResId,
                    String category, String imageUrl) {
@@ -27,4 +28,7 @@ public class Product {
     public String getImageUrl() { return imageUrl; }
     public boolean isChecked() { return checked; }
     public void setChecked(boolean checked) { this.checked = checked; }
+    public int getQuantity() { return quantity; }
+    public void increaseQuantity() { if (quantity < Integer.MAX_VALUE) quantity++; }
+    public void decreaseQuantity() { if (quantity > 1) quantity--; }
 }

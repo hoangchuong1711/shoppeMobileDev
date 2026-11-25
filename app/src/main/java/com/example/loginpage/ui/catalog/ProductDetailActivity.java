@@ -3,6 +3,7 @@ package com.example.loginpage.ui.catalog;
 import com.example.loginpage.R;
 import com.example.loginpage.model.Product;
 import com.example.loginpage.ui.cart.CartManager;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -44,9 +45,10 @@ public class ProductDetailActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.tvDetailName)).setText(product.getName());
         ((TextView) findViewById(R.id.tvDetailPrice)).setText(product.getPrice());
         ((TextView) findViewById(R.id.tvDetailDesc)).setText(product.getDescription());
-        ((TextView) findViewById(R.id.tvDetailUser))
-                .setText("Tài khoản: " + getSharedPreferences("user_data", MODE_PRIVATE)
-                        .getString("username", "Khách"));
+        MaterialToolbar toolbar = findViewById(R.id.detailToolbar);
+        toolbar.setSubtitle("Tài khoản: " + getSharedPreferences("user_data", MODE_PRIVATE)
+                .getString("username", "Khách"));
+        toolbar.setNavigationOnClickListener(view -> finish());
         ProductImageLoader.load(findViewById(R.id.imgDetailProduct), product);
 
         //button thêm giỏ hàng

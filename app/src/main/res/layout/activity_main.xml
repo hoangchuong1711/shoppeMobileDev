@@ -7,17 +7,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="#FFF2EE"
+    android:background="@color/shopee_orange_light"
     android:padding="24dp"
-    tools:context=".MainActivity">
+    tools:context=".ui.auth.MainActivity">
 
     <!-- Khung Card trắng chính giữa màn hình tông Cam - Trắng Shopee -->
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView style="@style/AppCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="16dp"
         app:cardElevation="4dp"
-        app:cardBackgroundColor="#FFFFFF">
+        app:cardBackgroundColor="@color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,7 +32,7 @@
                 android:background="@drawable/bg_icon_box"
                 android:padding="14dp"
                 android:src="@drawable/ic_cart_white"
-                app:tint="#EE4D2D"
+                app:tint="@color/shopee_orange"
                 android:layout_marginBottom="12dp" />
 
             <TextView
@@ -41,38 +41,53 @@
                 android:text="ĐĂNG NHẬP"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                android:textColor="#EE4D2D" />
+                android:textColor="@color/shopee_orange" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Chào mừng bạn quay trở lại mua sắm"
                 android:textSize="14sp"
-                android:textColor="#757575"
+                android:textColor="@color/text_secondary"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="24dp" />
 
-            <EditText
-                android:id="@+id/edtUsername"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/usernameInputLayout"
+                style="@style/AuthTextInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/bg_input"
-                android:hint="Tên đăng nhập"
-                android:paddingHorizontal="16dp"
-                android:inputType="text"
-                android:textSize="15sp"
-                android:layout_marginBottom="14dp" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:hint="Tên đăng nhập">
 
-            <EditText
-                android:id="@+id/edtPassword"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:textSize="15sp"
+                    android:autofillHints="username" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordInputLayout"
+                style="@style/AuthTextInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/bg_input"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="22dp"
                 android:hint="Mật khẩu"
-                android:paddingHorizontal="16dp"
-                android:inputType="textPassword"
-                android:textSize="15sp"
-                android:layout_marginBottom="22dp" />
+                app:endIconMode="password_toggle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:textSize="15sp"
+                    android:autofillHints="password" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btnLogin"
@@ -81,20 +96,20 @@
                 android:text="Đăng nhập"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:backgroundTint="#EE4D2D" />
+                android:textColor="@color/white"
+                android:backgroundTint="@color/shopee_orange" />
 
             <TextView
                 android:id="@+id/tvGoRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Chưa có tài khoản? Đăng ký ngay"
-                android:textColor="#EE4D2D"
+                android:textColor="@color/shopee_orange"
                 android:textStyle="bold"
                 android:padding="12dp"
                 android:layout_marginTop="8dp" />
 
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>

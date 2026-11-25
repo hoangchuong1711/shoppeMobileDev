@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">loginPage</string>
+    <string name="cart_product_image">Ảnh sản phẩm</string>
+    <string name="cart_decrease_quantity">Giảm số lượng</string>
+    <string name="cart_increase_quantity">Tăng số lượng</string>
+    <string name="cart_empty">Giỏ hàng trống</string>
 </resources>

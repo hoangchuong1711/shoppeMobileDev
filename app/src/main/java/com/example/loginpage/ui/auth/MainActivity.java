@@ -2,6 +2,7 @@ package com.example.loginpage.ui.auth;
 
 import com.example.loginpage.R;
 import com.example.loginpage.ui.catalog.ProductActivity;
+import com.google.android.material.textfield.TextInputLayout;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +19,8 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
     private EditText edtUsername;
     private EditText edtPassword;
+    private TextInputLayout usernameInputLayout;
+    private TextInputLayout passwordInputLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
         edtUsername = findViewById(R.id.edtUsername);
         edtPassword = findViewById(R.id.edtPassword);
+        usernameInputLayout = findViewById(R.id.usernameInputLayout);
+        passwordInputLayout = findViewById(R.id.passwordInputLayout);
 
         findViewById(R.id.tvGoRegister).setOnClickListener(view ->
                 startActivity(new Intent(this, RegisterActivity.class)));
@@ -44,10 +49,9 @@ public class MainActivity extends AppCompatActivity {
     private void handleLogin() {
         String username = edtUsername.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
-        if (username.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
-            return;
-        }
+        usernameInputLayout.setError(username.isEmpty() ? "Vui lòng nhập tên đăng nhập" : null);
+        passwordInputLayout.setError(password.isEmpty() ? "Vui lòng nhập mật khẩu" : null);
+        if (username.isEmpty() || password.isEmpty()) return;
 
         SharedPreferences prefs = getSharedPreferences("user_data", MODE_PRIVATE);
         if (username.equals(prefs.getString("username", ""))

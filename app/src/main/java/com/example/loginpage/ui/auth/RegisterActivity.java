@@ -1,6 +1,7 @@
 package com.example.loginpage.ui.auth;
 
 import com.example.loginpage.R;
+import com.google.android.material.textfield.TextInputLayout;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,6 +18,9 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText edtRegUsername;
     private EditText edtRegPassword;
     private EditText edtRegConfirm;
+    private TextInputLayout usernameInputLayout;
+    private TextInputLayout passwordInputLayout;
+    private TextInputLayout confirmInputLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,9 @@ public class RegisterActivity extends AppCompatActivity {
         edtRegUsername = findViewById(R.id.edtRegUsername);
         edtRegPassword = findViewById(R.id.edtRegPassword);
         edtRegConfirm = findViewById(R.id.edtRegConfirm);
+        usernameInputLayout = findViewById(R.id.usernameInputLayout);
+        passwordInputLayout = findViewById(R.id.passwordInputLayout);
+        confirmInputLayout = findViewById(R.id.confirmInputLayout);
         findViewById(R.id.btnRegister).setOnClickListener(view -> handleRegister());
         findViewById(R.id.tvBackLogin).setOnClickListener(view -> finish());
     }
@@ -42,20 +49,23 @@ public class RegisterActivity extends AppCompatActivity {
         String password = edtRegPassword.getText().toString().trim();
         String confirm = edtRegConfirm.getText().toString().trim();
 
+        usernameInputLayout.setError(null);
+        passwordInputLayout.setError(null);
+        confirmInputLayout.setError(null);
         if (username.isEmpty()) {
-            edtRegUsername.setError("Vui lòng nhập tên đăng nhập");
+            usernameInputLayout.setError("Vui lòng nhập tên đăng nhập");
             return;
         }
         if (password.isEmpty()) {
-            edtRegPassword.setError("Vui lòng nhập mật khẩu");
+            passwordInputLayout.setError("Vui lòng nhập mật khẩu");
             return;
         }
         if (password.length() < 6) {
-            edtRegPassword.setError("Mật khẩu tối thiểu 6 ký tự");
+            passwordInputLayout.setError("Mật khẩu tối thiểu 6 ký tự");
             return;
         }
         if (!password.equals(confirm)) {
-            edtRegConfirm.setError("Mật khẩu nhập lại không khớp");
+            confirmInputLayout.setError("Mật khẩu nhập lại không khớp");
             return;
         }
 

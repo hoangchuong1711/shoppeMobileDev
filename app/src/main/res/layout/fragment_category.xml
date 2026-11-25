@@ -3,88 +3,67 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="#F5F5F5">
+    android:background="@color/shopee_bg">
 
-    <!-- Thanh trượt ngang chứa các danh mục -->
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:scrollbars="none"
-        android:paddingVertical="10dp"
-        android:paddingHorizontal="8dp">
+        android:background="@color/white"
+        android:scrollbars="none">
 
-        <LinearLayout
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/categoryChipGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="8dp"
+        app:singleLine="true"
+        app:singleSelection="true"
+        app:selectionRequired="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/catAll"
+            style="@style/CategoryFilterChip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="Tất cả"
+            android:layout_marginHorizontal="4dp" />
 
-            <TextView
-                android:id="@+id/catAll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tất cả"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:background="@drawable/bg_category_selected"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"
-                android:layout_marginHorizontal="4dp" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/catFashion"
+            style="@style/CategoryFilterChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thời trang"
+            android:layout_marginHorizontal="4dp" />
 
-            <TextView
-                android:id="@+id/catFashion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Thời trang"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                android:textColor="#222222"
-                android:background="@drawable/bg_category_unselected"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"
-                android:layout_marginHorizontal="4dp" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/catConsumer"
+            style="@style/CategoryFilterChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tiêu dùng"
+            android:layout_marginHorizontal="4dp" />
 
-            <TextView
-                android:id="@+id/catConsumer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tiêu dùng"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                android:textColor="#222222"
-                android:background="@drawable/bg_category_unselected"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"
-                android:layout_marginHorizontal="4dp" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/catHealth"
+            style="@style/CategoryFilterChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sức khỏe"
+            android:layout_marginHorizontal="4dp" />
 
-            <TextView
-                android:id="@+id/catHealth"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sức khỏe"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                android:textColor="#222222"
-                android:background="@drawable/bg_category_unselected"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"
-                android:layout_marginHorizontal="4dp" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/catTech"
+            style="@style/CategoryFilterChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Công nghệ"
+            android:layout_marginHorizontal="4dp" />
 
-            <TextView
-                android:id="@+id/catTech"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Công nghệ"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                android:textColor="#222222"
-                android:background="@drawable/bg_category_unselected"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"
-                android:layout_marginHorizontal="4dp" />
-        </LinearLayout>
+    </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
 
     <TextView
@@ -94,7 +73,7 @@
         android:text="Danh mục: Tất cả sản phẩm"
         android:textSize="13sp"
         android:textStyle="bold"
-        android:textColor="#EE4D2D"
+        android:textColor="@color/shopee_orange"
         android:paddingHorizontal="12dp"
         android:paddingTop="8dp"
         android:paddingBottom="4dp" />

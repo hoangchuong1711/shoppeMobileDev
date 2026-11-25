@@ -3,8 +3,9 @@ package com.example.loginpage.ui.catalog;
 import com.example.loginpage.R;
 import com.example.loginpage.data.ProductRepository;
 import com.example.loginpage.model.Product;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.GridView;
@@ -45,10 +46,20 @@ public class CategoryFragment extends Fragment {
         grid.setOnItemClickListener((parent, item, position, id) ->
                 activity.openProductDetail(visibleProducts.get(position)));
 
+        ChipGroup chipGroup = view.findViewById(R.id.categoryChipGroup);
         for (int id : CATEGORY_IDS) {
-            TextView tab = view.findViewById(id);
-            tab.setOnClickListener(v -> selectCategory(view, tab.getText().toString()));
+            Chip chip = view.findViewById(id);
+            if (category.contentEquals(chip.getText())) {
+                chipGroup.check(id);
+                break;
+            }
         }
+        chipGroup.setOnCheckedStateChangeListener((group, checkedIds) -> {
+            if (!checkedIds.isEmpty()) {
+                Chip chip = group.findViewById(checkedIds.get(0));
+                selectCategory(view, chip.getText().toString());
+            }
+        });
         selectCategory(view, category);
 
         new ProductRepository().getProducts(new ProductRepository.ProductsCallback() {
@@ -68,15 +79,9 @@ public class CategoryFragment extends Fragment {
         });
     }
 
-    // Đổi màu danh mục đang chọn và chỉ hiện sản phẩm thuộc danh mục đó.
+    // Lọc sản phẩm theo chip đang chọn; ChipGroup tự quản lý trạng thái chọn.
     private void selectCategory(View view, String selected) {
         category = selected;
-        for (int id : CATEGORY_IDS) {
-            TextView tab = view.findViewById(id);
-            boolean active = selected.contentEquals(tab.getText());
-            tab.setBackgroundResource(active ? R.drawable.bg_category_selected : R.drawable.bg_category_unselected);
-            tab.setTextColor(active ? Color.WHITE : Color.parseColor("#222222"));
-        }
         ((TextView) view.findViewById(R.id.tvCategoryHeader)).setText(
                 selected.equals("Tất cả") ? "Danh mục: Tất cả sản phẩm" : "Danh mục: " + selected);
         visibleProducts.clear();

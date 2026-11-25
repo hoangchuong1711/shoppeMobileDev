@@ -8,4 +8,8 @@
     <color name="shopee_bg">#F5F5F5</color>
     <color name="text_primary">#222222</color>
     <color name="text_secondary">#757575</color>
+    <color name="text_muted">#9E9E9E</color>
+    <color name="text_body">#424242</color>
+    <color name="accent_teal">#00BFA5</color>
+    <color name="outline_light">#E0E0E0</color>
 </resources>
