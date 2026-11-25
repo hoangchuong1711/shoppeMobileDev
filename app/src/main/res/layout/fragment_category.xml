@@ -36,7 +36,7 @@
             style="@style/CategoryFilterChip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Thời trang"
+            android:text="Áo thun"
             android:layout_marginHorizontal="4dp" />
 
         <com.google.android.material.chip.Chip
@@ -44,7 +44,7 @@
             style="@style/CategoryFilterChip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tiêu dùng"
+            android:text="Áo sơ mi"
             android:layout_marginHorizontal="4dp" />
 
         <com.google.android.material.chip.Chip
@@ -52,7 +52,7 @@
             style="@style/CategoryFilterChip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sức khỏe"
+            android:text="Quần"
             android:layout_marginHorizontal="4dp" />
 
         <com.google.android.material.chip.Chip
@@ -60,7 +60,7 @@
             style="@style/CategoryFilterChip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Công nghệ"
+            android:text="Áo khoác"
             android:layout_marginHorizontal="4dp" />
 
     </com.google.android.material.chip.ChipGroup>

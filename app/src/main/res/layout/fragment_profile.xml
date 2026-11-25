@@ -1,103 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/shopee_bg">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@color/shopee_orange"
-            android:padding="20dp">
-            <com.google.android.material.card.MaterialCardView style="@style/AppCard"
-                android:layout_width="68dp"
-                android:layout_height="68dp"
-                app:cardCornerRadius="34dp"
-                app:cardBackgroundColor="@color/white">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="12dp"
-                    android:src="@drawable/ic_nav_user" />
-            </com.google.android.material.card.MaterialCardView>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/tvProfileName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Khách"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Thành viên Bạc • Người theo dõi: 12"
-                    android:textSize="12sp"
-                    android:textColor="@color/shopee_orange_light" />
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/white"
-            android:padding="16dp"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Đơn mua"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_primary" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal">
-                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
-                    <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/ic_order_confirm" />
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Chờ xác nhận" android:textSize="11sp" android:textColor="@color/text_primary" />
-                </LinearLayout>
-                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
-                    <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/ic_order_pickup" />
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Chờ lấy hàng" android:textSize="11sp" android:textColor="@color/text_primary" />
-                </LinearLayout>
-                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
-                    <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/ic_order_shipping" />
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Chờ giao hàng" android:textSize="11sp" android:textColor="@color/text_primary" />
-                </LinearLayout>
-                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
-                    <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/ic_order_rate" />
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Đánh giá" android:textSize="11sp" android:textColor="@color/text_primary" />
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/white"
-            android:padding="16dp"
-            android:orientation="vertical">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Thông tin cá nhân" android:textSize="15sp" android:textStyle="bold" android:textColor="@color/text_primary" />
-            <TextView android:id="@+id/tvProfileInfoName" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="• Tên tài khoản: Khách" android:textSize="14sp" android:textColor="@color/text_body" />
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="6dp" android:text="• Số điện thoại: 0901 234 567" android:textSize="14sp" android:textColor="@color/text_body" />
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="6dp" android:text="• Email: khachhang@shopee.vn" android:textSize="14sp" android:textColor="@color/text_body" />
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="6dp" android:text="• Địa chỉ: Quận 1, TP. Hồ Chí Minh" android:textSize="14sp" android:textColor="@color/text_body" />
-            <Button android:id="@+id/btnLogout" android:layout_width="match_parent" android:layout_height="46dp" android:layout_marginTop="14dp" android:text="Đăng xuất" android:textColor="@color/shopee_orange" android:backgroundTint="@color/shopee_orange_light" />
-        </LinearLayout>
-    </LinearLayout>
+ android:layout_width="match_parent" android:layout_height="match_parent"
+ android:background="@color/white">
+ <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+  android:orientation="vertical" android:padding="24dp">
+  <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+   android:text="YaMe" android:textSize="30sp" android:textStyle="bold"
+   android:textColor="@color/text_primary" />
+  <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+   android:layout_marginTop="24dp" android:text="Tài khoản của tôi"
+   android:textSize="16sp" android:textColor="@color/text_secondary" />
+  <TextView android:id="@+id/tvProfileName" android:layout_width="match_parent"
+   android:layout_height="wrap_content" android:layout_marginTop="8dp"
+   android:textSize="24sp" android:textStyle="bold" android:textColor="@color/text_primary" />
+  <TextView android:id="@+id/tvProfileInfoName" android:layout_width="match_parent"
+   android:layout_height="wrap_content" android:layout_marginTop="16dp"
+   android:textSize="14sp" android:textColor="@color/text_secondary" />
+  <com.google.android.material.button.MaterialButton android:id="@+id/btnLogout"
+   style="@style/Widget.Material3.Button.OutlinedButton"
+   android:layout_width="match_parent" android:layout_height="wrap_content"
+   android:layout_marginTop="32dp" android:text="Đăng xuất" />
+ </LinearLayout>
 </ScrollView>

@@ -86,7 +86,7 @@ public class CategoryFragment extends Fragment {
                 selected.equals("Tất cả") ? "Danh mục: Tất cả sản phẩm" : "Danh mục: " + selected);
         visibleProducts.clear();
         for (Product product : allProducts) {
-            if (selected.equals("Tất cả") || product.getCategory().equalsIgnoreCase(selected)) {
+            if (selected.equals("Tất cả") || product.getCategory().toLowerCase(java.util.Locale.ROOT).contains(selected.toLowerCase(java.util.Locale.ROOT))) {
                 visibleProducts.add(product);
             }
         }

@@ -1,50 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Giao diện Fragment Home: Gợi ý hôm nay + Grid 2 cột sản phẩm -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/shopee_bg">
-
-    <!-- Header Gợi ý hôm nay -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:background="@color/white"
-        android:paddingHorizontal="14dp"
-        android:paddingVertical="10dp"
-        android:layout_marginBottom="4dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="GỢI Ý HÔM NAY"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="@color/shopee_orange" />
-
-        <TextView
-            android:id="@+id/tvWelcomeUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Xin chào, Khách!"
-            android:textSize="12sp"
-            android:textColor="@color/text_secondary" />
-    </LinearLayout>
-
-    <!-- GridView 2 cột sản phẩm -->
-    <GridView
-        android:id="@+id/gvProducts"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:numColumns="2"
-        android:horizontalSpacing="6dp"
-        android:verticalSpacing="6dp"
-        android:padding="8dp"
-        android:clipToPadding="false"
-        android:scrollbars="none" />
-
+ android:layout_width="match_parent" android:layout_height="match_parent"
+ android:orientation="vertical" android:background="@color/white">
+ <LinearLayout android:id="@+id/homeIntro" android:layout_width="match_parent"
+  android:layout_height="wrap_content" android:orientation="vertical"
+  android:paddingHorizontal="16dp" android:paddingVertical="20dp">
+  <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+   android:text="YAME • THỜI TRANG HẰNG NGÀY" android:textSize="16sp"
+   android:textColor="@color/text_primary" android:textStyle="bold" />
+  <TextView android:id="@+id/tvWelcomeUser" android:layout_width="match_parent"
+   android:layout_height="wrap_content" android:layout_marginTop="4dp"
+   android:textColor="@color/text_secondary" />
+ </LinearLayout>
+ <LinearLayout android:id="@+id/categoryIntro" android:layout_width="match_parent"
+  android:layout_height="wrap_content" android:orientation="vertical"
+  android:padding="16dp" android:visibility="gone">
+  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+   android:orientation="horizontal">
+   <TextView android:id="@+id/breadcrumbHome" android:layout_width="wrap_content"
+    android:layout_height="wrap_content" android:text="Trang chủ"
+    android:textColor="@color/text_primary" android:paddingVertical="8dp" />
+   <TextView android:id="@+id/breadcrumbCategory" android:layout_width="wrap_content"
+    android:layout_height="wrap_content" android:textColor="@color/text_secondary"
+    android:paddingVertical="8dp" />
+  </LinearLayout>
+  <TextView android:id="@+id/categoryTitle" android:layout_width="match_parent"
+   android:layout_height="wrap_content" android:layout_marginTop="24dp"
+   android:textSize="28sp" android:textColor="@color/text_primary" />
+  <TextView android:id="@+id/resultCount" android:layout_width="match_parent"
+   android:layout_height="wrap_content" android:gravity="end"
+   android:layout_marginTop="28dp" android:textColor="@color/text_secondary" />
+ </LinearLayout>
+ <GridView android:id="@+id/gvProducts" android:layout_width="match_parent"
+  android:layout_height="0dp" android:layout_weight="1" android:numColumns="2"
+  android:horizontalSpacing="6dp" android:verticalSpacing="6dp"
+  android:padding="8dp" android:clipToPadding="false" android:scrollbars="none" />
+ <TextView android:id="@+id/emptyProducts" android:layout_width="match_parent"
+  android:layout_height="0dp" android:layout_weight="1" android:gravity="center"
+  android:text="Chưa có sản phẩm trong loại này" android:visibility="gone" />
 </LinearLayout>

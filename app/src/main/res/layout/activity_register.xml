@@ -28,7 +28,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TẠO TÀI KHOẢN"
+                android:text="THAM GIA YaMe"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:textColor="@color/shopee_orange" />
@@ -36,7 +36,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Điền thông tin bên dưới để đăng ký"
+                android:text="Tạo tài khoản để bắt đầu mua sắm"
                 android:textSize="14sp"
                 android:textColor="@color/text_secondary"
                 android:layout_marginTop="4dp"

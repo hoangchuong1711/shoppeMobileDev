@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/nav_home"
-        android:icon="@drawable/ic_nav_home"
-        android:title="Home" />
-    <item
-        android:id="@+id/nav_category"
-        android:icon="@drawable/ic_nav_category"
-        android:title="Danh mục" />
-    <item
-        android:id="@+id/nav_notification"
-        android:icon="@drawable/ic_nav_notify"
-        android:title="Thông báo" />
-    <item
-        android:id="@+id/nav_profile"
-        android:icon="@drawable/ic_nav_user"
-        android:title="Tôi" />
+ <item android:id="@+id/nav_home" android:icon="@drawable/ic_nav_home" android:title="Trang chủ" />
+ <item android:id="@+id/nav_category" android:icon="@drawable/ic_nav_category" android:title="Menu" />
+ <item android:id="@+id/nav_cart" android:icon="@drawable/ic_cart_white" android:title="Giỏ" />
+ <item android:id="@+id/nav_profile" android:icon="@drawable/ic_nav_user" android:title="Cá nhân" />
 </menu>

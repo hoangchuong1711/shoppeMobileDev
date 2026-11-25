@@ -37,11 +37,11 @@ public class CartAdapter extends ArrayAdapter<Product> {
         CheckBox checkBox = row.findViewById(R.id.cbCartItem);
         checkBox.setOnCheckedChangeListener(null);
         checkBox.setChecked(product.isChecked());
-        checkBox.setOnCheckedChangeListener((button, checked) -> product.setChecked(checked));
+        checkBox.setOnCheckedChangeListener((button, checked) -> { product.setChecked(checked); onCartChanged.run(); });
 
         ProductImageLoader.load(row.findViewById(R.id.imgCartProduct), product);
         ((TextView) row.findViewById(R.id.tvCartName)).setText(product.getName());
-        ((TextView) row.findViewById(R.id.tvCartDesc)).setText(product.getDescription());
+        ((TextView) row.findViewById(R.id.tvCartDesc)).setText("Size " + product.getSize() + " • " + product.getDescription());
         ((TextView) row.findViewById(R.id.tvCartPrice)).setText(product.getPrice());
         ((TextView) row.findViewById(R.id.tvCartQuantity))
                 .setText(String.valueOf(product.getQuantity()));
